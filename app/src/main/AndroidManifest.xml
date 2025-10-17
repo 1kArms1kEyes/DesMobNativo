@@ -12,6 +12,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppMobile">
         <activity
+            android:name=".activities.ActualizacionDeClientesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.PerfilDeUsuarioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.OlvidarContraseniaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.RegistroDeClientesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.WelcomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.SplashActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
