@@ -1,10 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.SplashActivity">
+    android:background="@drawable/bg_splash_gradient">
+
+    <!-- Inset border -->
+    <View
+        android:id="@+id/border"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/splash_border"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="28dp"/>
+
+    <!-- Top squiggle decoration (PNG/SVG) -->
+    <ImageView
+        android:id="@+id/topWave"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:src="@drawable/splash_top_wave"
+        android:scaleType="fitStart"
+        android:contentDescription="@null"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Bottom-left bag -->
+    <ImageView
+        android:id="@+id/bagLeft"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/splash_bag_left"
+        android:scaleType="fitCenter"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="56dp"/>
+
+    <!-- Bottom-right bag (cropped offscreen a bit) -->
+    <ImageView
+        android:id="@+id/bagRight"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:src="@drawable/splash_bag_right"
+        android:scaleType="centerCrop"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="-12dp"
+        android:layout_marginBottom="120dp"/>
+
+    <!-- Center logo -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/logo_cypher_white"
+        android:tint="@android:color/white"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="48dp"/>
+
+    <!-- App name -->
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cypher"
+        android:textColor="@android:color/white"
+        android:textSize="28sp"
+        android:fontFamily="cursive"
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

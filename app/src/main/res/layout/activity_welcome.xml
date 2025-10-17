@@ -1,10 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.WelcomeActivity">
+    android:background="@android:color/white">
+
+    <!-- App logo -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:src="@drawable/logo_cypher"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="36dp" />
+
+    <!-- App title -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cypher"
+        android:textSize="28sp"
+        android:textColor="#000000"
+        android:fontFamily="cursive"
+        android:shadowColor="#55000000"
+        android:shadowDx="0"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp" />
+
+    <!-- Login -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogin"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:text="Iniciar Sesión"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:cornerRadius="14dp"
+        app:iconGravity="textStart"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="36dp"
+        app:backgroundTint="#5674E6"
+        android:textColor="@android:color/white" />
+
+    <!-- Register -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRegister"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:text="Registrarse"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:cornerRadius="14dp"
+        app:layout_constraintTop_toBottomOf="@id/btnLogin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="18dp"
+        app:backgroundTint="#5674E6"
+        android:textColor="@android:color/white" />
+
+    <!-- Decorative wave background near bottom -->
+    <ImageView
+        android:id="@+id/wave"
+        android:layout_width="0dp"
+        android:layout_height="220dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/wave_bg"
+        android:contentDescription="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Dancer (overlaps wave) -->
+    <ImageView
+        android:id="@+id/dancer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/dancer"
+        android:contentDescription="@null"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintWidth_percent="0.92"
+        app:layout_constraintHeight_default="wrap"
+        android:translationY="-12dp"
+        android:elevation="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
