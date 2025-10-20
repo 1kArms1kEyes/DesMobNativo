@@ -17,13 +17,13 @@
         android:paddingEnd="20dp"
         android:paddingTop="28dp">
 
-        <!-- Avatar with rounded corners -->
+        <!-- Avatar -->
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgAvatar"
             android:layout_width="104dp"
             android:layout_height="104dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/sample_avatar"  <!-- replace -->
+            android:src="@drawable/FotoPerfil"
         app:shapeAppearanceOverlay="@style/RoundedLg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -54,7 +54,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="16dp" />
 
-        <!-- Lastname (sub) -->
+        <!-- Lastname  -->
         <TextView
             android:id="@+id/tvLastname"
             android:layout_width="0dp"
@@ -144,7 +144,7 @@
             android:id="@+id/etSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Busqueda"
+            android:hint="     Busqueda"
             android:inputType="text"
             android:imeOptions="actionSearch"/>
     </com.google.android.material.textfield.TextInputLayout>

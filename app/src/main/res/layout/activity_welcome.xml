@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <!-- App logo -->
+    <!-- Logo -->
     <ImageView
         android:id="@+id/logo"
         android:layout_width="88dp"
         android:layout_height="88dp"
-        android:src="@drawable/logo_cypher"
+        android:src="@drawable/logo_cypher_white"
         android:contentDescription="@string/app_name"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="36dp" />
 
-    <!-- App title -->
+    <!-- Title -->
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -79,19 +80,23 @@
         app:backgroundTint="#5674E6"
         android:textColor="@android:color/white" />
 
-    <!-- Decorative wave background near bottom -->
+
+
+    <!-- Decoration -->
+
     <ImageView
         android:id="@+id/wave"
-        android:layout_width="0dp"
-        android:layout_height="220dp"
+        android:layout_width="423dp"
+        android:layout_height="335dp"
+        android:layout_marginBottom="4dp"
+        android:contentDescription="@null"
         android:scaleType="fitXY"
         android:src="@drawable/wave_bg"
-        android:contentDescription="@null"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Dancer (overlaps wave) -->
     <ImageView
         android:id="@+id/dancer"
         android:layout_width="0dp"
@@ -99,7 +104,7 @@
         android:src="@drawable/dancer"
         android:contentDescription="@null"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
+        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

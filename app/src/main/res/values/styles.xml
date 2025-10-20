@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Rounded corners: large -->
+    <style name="RoundedLg">
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.MaterialComponents.MediumComponent</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <!-- Rounded corners: medium -->
+    <style name="RoundedMd">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+</resources>

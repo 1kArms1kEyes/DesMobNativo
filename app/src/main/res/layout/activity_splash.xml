@@ -5,48 +5,50 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_splash_gradient">
 
-    <!-- Inset border -->
+
+
     <View
         android:id="@+id/border"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/splash_border"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="28dp"
-        android:layout_marginBottom="28dp"/>
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/splash_border"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <!-- Top squiggle decoration (PNG/SVG) -->
     <ImageView
         android:id="@+id/topWave"
         android:layout_width="0dp"
         android:layout_height="120dp"
-        android:src="@drawable/splash_top_wave"
-        android:scaleType="fitStart"
+        android:layout_marginTop="4dp"
         android:contentDescription="@null"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/splash_top_wave"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Bottom-left bag -->
+
     <ImageView
         android:id="@+id/bagLeft"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:src="@drawable/splash_bag_left"
-        android:scaleType="fitCenter"
-        android:contentDescription="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="56dp"/>
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@null"
+        android:scaleType="fitCenter"
+        android:src="@drawable/splash_bag_left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Bottom-right bag (cropped offscreen a bit) -->
     <ImageView
         android:id="@+id/bagRight"
         android:layout_width="180dp"
@@ -59,13 +61,12 @@
         android:layout_marginEnd="-12dp"
         android:layout_marginBottom="120dp"/>
 
-    <!-- Center logo -->
+    <!-- Logo -->
     <ImageView
         android:id="@+id/logo"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:src="@drawable/logo_cypher_white"
-        android:tint="@android:color/white"
         android:contentDescription="@string/app_name"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -73,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="48dp"/>
 
-    <!-- App name -->
+    <!-- Cypher text -->
     <TextView
         android:id="@+id/appName"
         android:layout_width="wrap_content"
