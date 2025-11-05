@@ -1,3 +1,52 @@
 <resources>
     <string name="app_name">App Mobile</string>
+    <string name="activity_actualizacioncl_title"> Actualizar Clientes </string>
+    <string name="btnback_text"> Atrás </string>
+    <string name="username_label_text"> Nombre de usuario *</string>
+    <string name="username_textbox_text">Juana Ramirez</string>
+    <string name="password_label_text">Contraseña *</string>
+    <string name="password_textbox_text">**********</string>
+    <string name="mail_label_text">Correo *</string>
+    <string name="mail_textbox_text">juana@hotmail.com</string>
+    <string name="phone_label_text">Teléfono *</string>
+    <string name="departamento_label_text">Departamento*</string>
+
+
+    <string-array name="departamentos">
+        <item>Bogotá D.C.</item>
+        <item>Amazonas</item>
+        <item>Antioquia</item>
+        <item>Arauca</item>
+        <item>Atlántico</item>
+        <item>Bolívar</item>
+        <item>Boyacá</item>
+        <item>Caldas</item>
+        <item>Caquetá</item>
+        <item>Casanare</item>
+        <item>Cauca</item>
+        <item>Cesar</item>
+        <item>Chocó</item>
+        <item>Córdoba</item>
+        <item>Cundinamarca</item>
+        <item>Guainía</item>
+        <item>Guaviare</item>
+        <item>Huila</item>
+        <item>La Guajira</item>
+        <item>Magdalena</item>
+        <item>Meta</item>
+        <item>Nariño</item>
+        <item>Norte de Santander</item>
+        <item>Putumayo</item>
+        <item>Quindío</item>
+        <item>Risaralda</item>
+        <item>San Andrés, Providencia y Santa Catalina</item>
+        <item>Santander</item>
+        <item>Sucre</item>
+        <item>Tolima</item>
+        <item>Valle del Cauca</item>
+        <item>Vaupés</item>
+        <item>Vichada</item>
+    </string-array>
+
+
 </resources>

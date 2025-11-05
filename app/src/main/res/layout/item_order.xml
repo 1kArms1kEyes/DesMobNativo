@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="92dp"
+    android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
     android:layout_marginTop="10dp"
@@ -13,56 +13,73 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="92dp"
+        android:layout_height="wrap_content"
         android:padding="12dp">
 
+        <!-- Left thumbnail -->
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgProduct"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/sample_product"   <!-- replace with your image -->
+            android:src="@drawable/sample_product"   <!-- replace -->
         app:shapeAppearanceOverlay="@style/RoundedMd"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+        <!-- Date (top-right) -->
         <TextView
             android:id="@+id/tvDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:text="2025/01/10"
-            android:textColor="#9AA0A6"
             android:textSize="11sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="#9AA0A6"
             app:layout_constraintStart_toEndOf="@id/imgProduct"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="12dp" />
 
+        <!-- Order title (2 lines max) -->
         <TextView
             android:id="@+id/tvOrderTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:maxLines="2"
             android:text="Pedido No. 213541\nHoodie Carmesí"
-            android:textColor="#212121"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="#212121"
+            android:maxLines="2"
+            android:ellipsize="end"
             app:layout_constraintStart_toStartOf="@id/tvDate"
-            app:layout_constraintTop_toBottomOf="@id/tvDate" />
+            app:layout_constraintTop_toBottomOf="@id/tvDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="4dp" />
 
+        <!-- Barrier under the title so price sits below it even if it wraps -->
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/titleBottom"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="tvOrderTitle" />
+
+        <!-- Price (bottom-left of the right column) -->
         <TextView
             android:id="@+id/tvPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
             android:text="100.000 COP"
-            android:textColor="#9AA0A6"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="#9AA0A6"
+            app:layout_constraintStart_toStartOf="@id/tvOrderTitle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/tvOrderTitle" />
+            app:layout_constraintTop_toBottomOf="@id/titleBottom"
+            android:layout_marginTop="6dp" />
 
+        <!-- Small bottom spacer so shadows don't clip when list is tight -->
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tvPrice"
+            app:layout_constraintStart_toStartOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

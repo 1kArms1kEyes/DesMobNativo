@@ -22,7 +22,7 @@
             android:layout_height="24dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_arrow_back_24"
-            android:contentDescription="@string/abc_action_bar_up_description"/>
+            android:contentDescription="@string/btnback_text"/>
     </FrameLayout>
 
     <!-- Title -->
@@ -30,10 +30,10 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Actualizar Clientes"
+        android:text="@string/activity_actualizacioncl_title"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#212121"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="@id/backContainer"
         app:layout_constraintBottom_toBottomOf="@id/backContainer"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:boxBackgroundColor="#E5E9FF"
+        app:boxBackgroundColor="@color/lavenderBlue"
         app:boxCornerRadiusTopStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"
         app:boxCornerRadiusBottomStart="12dp"
@@ -61,8 +61,8 @@
             android:id="@+id/etUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre de usuario *"
-            android:text="Juana Ramirez"
+            android:hint="@string/username_label_text"
+            android:text="@string/username_textbox_text"
             android:inputType="textPersonName"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,7 +71,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:boxBackgroundColor="#E5E9FF"
+        app:boxBackgroundColor="@color/lavenderBlue"
         app:boxCornerRadiusTopStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"
         app:boxCornerRadiusBottomStart="12dp"
@@ -88,9 +88,9 @@
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Contraseña *"
+            android:hint="@string/password_label_text"
             android:inputType="textPassword"
-            android:text="**********"/>
+            android:text="@string/password_textbox_text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- ===== Row 2: Correo / Teléfono ===== -->
@@ -99,7 +99,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:boxBackgroundColor="#E5E9FF"
+        app:boxBackgroundColor="@color/lavenderBlue"
         app:boxCornerRadiusTopStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"
         app:boxCornerRadiusBottomStart="12dp"
@@ -115,8 +115,8 @@
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Correo *"
-            android:text="juana@hotmail.com"
+            android:hint="@string/mail_label_text"
+            android:text="@string/mail_textbox_text"
             android:inputType="textEmailAddress"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,7 +125,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:boxBackgroundColor="#E5E9FF"
+        app:boxBackgroundColor="@color/lavenderBlue"
         app:boxCornerRadiusTopStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"
         app:boxCornerRadiusBottomStart="12dp"
@@ -141,7 +141,7 @@
             android:id="@+id/etPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Teléfono *"
+            android:hint="@string/phone_label_text"
             android:inputType="phone"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -151,7 +151,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:boxBackgroundColor="#E5E9FF"
+        app:boxBackgroundColor="@color/lavenderBlue"
         app:boxCornerRadiusTopStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"
         app:boxCornerRadiusBottomStart="12dp"
@@ -168,9 +168,10 @@
             android:id="@+id/actvDept"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Departamento*"
+            android:hint="@string/departamento_label_text"
             android:text="Bogotá"
-            android:inputType="none"/>
+            android:inputType="none"
+            android:entries="@array/departamentos"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- ===== Municipio (dropdown) ===== -->
@@ -179,7 +180,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:boxBackgroundColor="#E5E9FF"
+        app:boxBackgroundColor="@color/lavenderBlue"
         app:boxCornerRadiusTopStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"
         app:boxCornerRadiusBottomStart="12dp"
