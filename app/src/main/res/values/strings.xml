@@ -1,8 +1,12 @@
 <resources>
+    <!-- General Strings -->
     <string name="app_name">App Mobile</string>
-    <string name="activity_actualizacioncl_title"> Actualizar Clientes </string>
-    <string name="btnback_text"> Atrás </string>
-    <string name="username_label_text"> Nombre de usuario *</string>
+    <string name="btnback_text">Atrás</string>
+
+
+    <!-- activity_actualizacion_de_clientes Strings -->
+    <string name="activity_actualizacioncl_title">Actualizar Clientes</string>
+    <string name="username_label_text">Nombre de usuario*</string>
     <string name="username_textbox_text">Juana Ramirez</string>
     <string name="password_label_text">Contraseña *</string>
     <string name="password_textbox_text">**********</string>
@@ -10,43 +14,39 @@
     <string name="mail_textbox_text">juana@hotmail.com</string>
     <string name="phone_label_text">Teléfono *</string>
     <string name="departamento_label_text">Departamento*</string>
+    <string name="departamento_textbox_text">Bogota</string>
+    <string name="municipio_label_text">Municipio*</string>
+    <string name="municipio_textbox_text">Bogota</string>
+    <string name="direccion_label_text">Dirección*</string>
+    <string name="btnActualizar">Actuaizar</string>
+
+    <!-- activity_carrito Strings -->
+    <string name="activity_carrito_title">Carrito</string>
+    <string name="direccion_de_envio_label_text">Dirección de Envío</string>
+    <string name="direccion_de_envio_text">Ac. 32 #17 – 30</string>
+    <string name="barrio_de_envio_label_text">Teusaquillo</string>
+    <string name="ciudad_de_envio_label_text">Bogotá</string>
+    <string name="resumen_de_compra_label_text">Resumen de Compra</string>
+    <string name="subtotal_label_text">Subtotal</string>
+    <string name="subtotal_amount_text">$290.000</string>
+    <string name="costo_envio_label_text">Envío</string>
+    <string name="costo_envio_amount_text">$25.000</string>
+    <string name="total_label_text">Total</string>
+    <string name="btnpay_text">Pagar</string>
+    <string name="total_amount_text">$315.000</string>
+
+    <!-- activity_compra Strings -->
+    <string name="activity_compra_title">Productos</string>
+    <string name="vector_hoodie_desc">Hoodies</string>
+    <string name="hoodie_label_text">Hoodies</string>
+    <string name="vector_snapback_desc">Snapback</string>
+    <string name="snapback_label_text">Snapback</string>
+    <string name="vector_camiseta_desc">Camisetas</string>
+    <string name="camiseta_label_text">Camisetas</string>
+    <string name="vector_tenis_desc">Tenis</string>
+    <string name="tenis_label_text">Tenis</string>
 
 
-    <string-array name="departamentos">
-        <item>Bogotá D.C.</item>
-        <item>Amazonas</item>
-        <item>Antioquia</item>
-        <item>Arauca</item>
-        <item>Atlántico</item>
-        <item>Bolívar</item>
-        <item>Boyacá</item>
-        <item>Caldas</item>
-        <item>Caquetá</item>
-        <item>Casanare</item>
-        <item>Cauca</item>
-        <item>Cesar</item>
-        <item>Chocó</item>
-        <item>Córdoba</item>
-        <item>Cundinamarca</item>
-        <item>Guainía</item>
-        <item>Guaviare</item>
-        <item>Huila</item>
-        <item>La Guajira</item>
-        <item>Magdalena</item>
-        <item>Meta</item>
-        <item>Nariño</item>
-        <item>Norte de Santander</item>
-        <item>Putumayo</item>
-        <item>Quindío</item>
-        <item>Risaralda</item>
-        <item>San Andrés, Providencia y Santa Catalina</item>
-        <item>Santander</item>
-        <item>Sucre</item>
-        <item>Tolima</item>
-        <item>Valle del Cauca</item>
-        <item>Vaupés</item>
-        <item>Vichada</item>
-    </string-array>
 
 
 </resources>

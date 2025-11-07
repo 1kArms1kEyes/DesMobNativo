@@ -17,13 +17,16 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/btnBack"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:src="@drawable/ic_arrow_back_24"
-            android:contentDescription="@string/abc_action_bar_up_description"/>
+            android:background="@drawable/bg_circle_light"
+            android:contentDescription="@string/btnback_text"
+            android:scaleType="centerInside"
+            android:padding="10dp"
+            android:foreground="?attr/selectableItemBackgroundBorderless"/>
     </FrameLayout>
 
     <!-- Title -->
@@ -31,10 +34,10 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Productos"
+        android:text="@string/activity_compra_title"
         android:textStyle="bold"
-        android:textSize="28sp"
-        android:textColor="#111111"
+        android:textSize="26sp"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="@id/backContainer"
         app:layout_constraintBottom_toBottomOf="@id/backContainer"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,10 +58,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingTop="18dp"
-            android:paddingBottom="18dp">
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
 
             <!-- FILTER PILLS (Row 1) -->
             <LinearLayout
@@ -67,35 +70,42 @@
                 android:orientation="horizontal"
                 android:weightSum="2">
 
-                <!-- Brand-only pill -->
+                <!-- Hoodies -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_weight="1"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="16dp"
+                    android:layout_margin="6dp"
+                    app:cardCornerRadius="14dp"
                     app:cardElevation="0dp"
-                    app:cardBackgroundColor="#F5F7FB">
+                    app:cardBackgroundColor="@color/light_gray">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp">
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
 
                         <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:src="@drawable/vector_hoodie"/>
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/vector_hoodie"
+                            android:contentDescription="@string/vector_hoodie_desc"/>
+
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:layout_marginStart="10dp"
-                            android:text="Hoodies"
-                            android:textColor="#1A1A1A"
-                            android:textSize="16sp"/>
+                            android:layout_marginStart="6dp"
+                            android:text="@string/hoodie_label_text"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:singleLine="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:gravity="center_vertical"/>
+
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/swHoodies"
                             android:layout_width="wrap_content"
@@ -106,36 +116,41 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Snapbacks + switch -->
+                <!-- Snapbacks -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_weight="1"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="16dp"
+                    android:layout_margin="6dp"
+                    app:cardCornerRadius="14dp"
                     app:cardElevation="0dp"
-                    app:cardBackgroundColor="#F5F7FB">
+                    app:cardBackgroundColor="@color/light_gray">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp">
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
 
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/vector_snapback"/>
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/vector_snapback"
+                            android:contentDescription="@string/vector_snapback_desc"/>
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:layout_marginStart="10dp"
-                            android:text="Snapbacks"
-                            android:textColor="#1A1A1A"
-                            android:textSize="16sp"/>
+                            android:layout_marginStart="6dp"
+                            android:text="@string/snapback_label_text"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:singleLine="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:gravity="center_vertical"/>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/swSnapbacks"
@@ -154,36 +169,41 @@
                 android:orientation="horizontal"
                 android:weightSum="2">
 
-                <!-- Camisetas + switch -->
+                <!-- Camisetas -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_weight="1"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="16dp"
+                    android:layout_margin="6dp"
+                    app:cardCornerRadius="14dp"
                     app:cardElevation="0dp"
-                    app:cardBackgroundColor="#F5F7FB">
+                    app:cardBackgroundColor="@color/light_gray">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp">
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
 
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/vector_shirt"/>
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/vector_shirt"
+                            android:contentDescription="@string/vector_camiseta_desc"/>
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:layout_marginStart="10dp"
-                            android:text="Camisetas"
-                            android:textColor="#1A1A1A"
-                            android:textSize="16sp"/>
+                            android:layout_marginStart="6dp"
+                            android:text="@string/camiseta_label_text"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:singleLine="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:gravity="center_vertical"/>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/swCamisetas"
@@ -195,44 +215,48 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Tenis + switch -->
+                <!-- Tenis -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_weight="1"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="16dp"
+                    android:layout_margin="6dp"
+                    app:cardCornerRadius="14dp"
                     app:cardElevation="0dp"
-                    app:cardBackgroundColor="#F5F7FB">
+                    app:cardBackgroundColor="@color/light_gray">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp">
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
 
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/vector_sneackers"/>
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:contentDescription="@string/vector_tenis_desc"
+                            android:src="@drawable/vector_sneackers" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
                             android:layout_weight="1"
-                            android:layout_marginStart="10dp"
-                            android:text="Tenis"
-                            android:textColor="#1A1A1A"
-                            android:textSize="16sp"/>
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="@string/tenis_label_text"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/swTenis"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:thumbTint="@color/switch_thumb_green"
-                            app:trackTint="@color/switch_track_green"/>
-
+                            app:trackTint="@color/switch_track_green" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
@@ -247,5 +271,4 @@
                 android:paddingBottom="12dp"/>
         </LinearLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
