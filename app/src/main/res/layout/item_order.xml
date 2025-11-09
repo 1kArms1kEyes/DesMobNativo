@@ -17,70 +17,97 @@
         android:layout_height="wrap_content"
         android:padding="12dp">
 
-        <!-- Left thumbnail -->
+        <!-- Product thumbnail -->
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgProduct"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:scaleType="centerCrop"
             android:src="@drawable/sample_product"
-        app:shapeAppearanceOverlay="@style/RoundedMd"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+            app:shapeAppearanceOverlay="@style/RoundedMd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-        <!-- Date (top-right) -->
+        <!-- Date -->
         <TextView
             android:id="@+id/tvDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="2025/01/10"
+            android:text="@string/fecha_pedido_item_order_text"
             android:textSize="11sp"
-            android:textColor="#9AA0A6"
+            android:textColor="@color/gray"
             app:layout_constraintStart_toEndOf="@id/imgProduct"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="12dp" />
 
-        <!-- Order title (2 lines max) -->
+        <!-- Pedido label -->
         <TextView
-            android:id="@+id/tvOrderTitle"
-            android:layout_width="0dp"
+            android:id="@+id/tvPedidoLabel"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pedido No. 213541\nHoodie Carmesí"
+            android:text="@string/pedido_item_order_label"
             android:textSize="14sp"
-            android:textColor="#212121"
-            android:maxLines="2"
-            android:ellipsize="end"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="@id/tvDate"
             app:layout_constraintTop_toBottomOf="@id/tvDate"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="4dp" />
 
-        <!-- Barrier under the title so price sits below it even if it wraps -->
+        <!-- Pedido number (dynamic) -->
+        <TextView
+            android:id="@+id/tvOrderNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/order_number_item_order_text"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/tvPedidoLabel"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvPedidoLabel"
+            android:layout_marginStart="4dp" />
+
+        <!-- Product name -->
+        <TextView
+            android:id="@+id/tvProductName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/product_item_order_text"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintStart_toStartOf="@id/tvPedidoLabel"
+            app:layout_constraintTop_toBottomOf="@id/tvPedidoLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="2dp" />
+
+        <!-- Barrier under last title line -->
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/titleBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="tvOrderTitle" />
+            app:constraint_referenced_ids="tvProductName" />
 
-        <!-- Price (bottom-left of the right column) -->
+        <!-- Price -->
         <TextView
             android:id="@+id/tvPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="100.000 COP"
+            android:text="@string/precio_item_order_text"
             android:textSize="12sp"
-            android:textColor="#9AA0A6"
-            app:layout_constraintStart_toStartOf="@id/tvOrderTitle"
+            android:textColor="@color/gray"
+            app:layout_constraintStart_toStartOf="@id/tvPedidoLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/titleBottom"
             android:layout_marginTop="6dp" />
 
-        <!-- Small bottom spacer so shadows don't clip when list is tight -->
+        <!-- Spacer -->
         <Space
             android:layout_width="0dp"
             android:layout_height="4dp"
             app:layout_constraintTop_toBottomOf="@id/tvPrice"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

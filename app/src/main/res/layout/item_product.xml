@@ -9,7 +9,7 @@
     app:cardElevation="2dp"
     app:cardUseCompatPadding="true"
     app:strokeWidth="0dp"
-    app:cardBackgroundColor="@android:color/white">
+    app:cardBackgroundColor="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,11 +22,12 @@
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/sample_product"   <!-- replace -->
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialComponents.RoundedMedium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+            android:src="@drawable/sample_product"
+            app:shapeAppearanceOverlay="@style/RoundedMd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
 
         <!-- Text container -->
         <LinearLayout
@@ -45,10 +46,10 @@
                 android:id="@+id/tvTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hoodie Legend 2Pac"
+                android:text="@string/product_item_product_label"
                 android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="#111111"
+                android:textColor="@color/black"
                 android:maxLines="2"
                 android:ellipsize="end" />
 
@@ -57,9 +58,9 @@
                 android:id="@+id/tvPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="$130.000"
+                android:text="@string/precio_item_product_label"
                 android:textSize="15sp"
-                android:textColor="#8A8F98"
+                android:textColor="@color/black"
                 android:layout_marginTop="4dp"/>
         </LinearLayout>
 
