@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@color/white">
 
     <!-- Back circle -->
     <FrameLayout
@@ -34,10 +34,10 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Editar Producto"
+        android:text="@string/activity_editar_productos"
         android:textStyle="bold"
         android:textSize="24sp"
-        android:textColor="#1A1A1A"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="@id/backContainer"
         app:layout_constraintBottom_toBottomOf="@id/backContainer"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,10 +67,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre"
+                android:text="@string/nombre_editar_pd_label"
                 android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="#1A1A1A"
+                android:textColor="@color/black"
                 android:layout_marginTop="8dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -78,7 +78,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxBackgroundColor="#E4E9FF"
+                app:boxBackgroundColor="@color/lavenderBlue"
                 app:boxCornerRadiusTopStart="16dp"
                 app:boxCornerRadiusTopEnd="16dp"
                 app:boxCornerRadiusBottomStart="16dp"
@@ -95,10 +95,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Categoría"
+                android:text="@string/categoria_editar_pd_label"
                 android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="#1A1A1A"
+                android:textColor="@color/black"
                 android:layout_marginTop="22dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -106,7 +106,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxBackgroundColor="#E4E9FF"
+                app:boxBackgroundColor="@color/lavenderBlue"
                 app:boxCornerRadiusTopStart="16dp"
                 app:boxCornerRadiusTopEnd="16dp"
                 app:boxCornerRadiusBottomStart="16dp"
@@ -123,10 +123,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Precio"
+                android:text="@string/precio_editar_pd_label"
                 android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="#1A1A1A"
+                android:textColor="@color/black"
                 android:layout_marginTop="22dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -134,7 +134,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxBackgroundColor="#E4E9FF"
+                app:boxBackgroundColor="@color/lavenderBlue"
                 app:boxCornerRadiusTopStart="16dp"
                 app:boxCornerRadiusTopEnd="16dp"
                 app:boxCornerRadiusBottomStart="16dp"
@@ -151,10 +151,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Descripción"
+                android:text="@string/descripcion_editar_pd_label"
                 android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="#1A1A1A"
+                android:textColor="@color/black"
                 android:layout_marginTop="22dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -162,7 +162,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxBackgroundColor="#E4E9FF"
+                app:boxBackgroundColor="@color/lavenderBlue"
                 app:boxCornerRadiusTopStart="16dp"
                 app:boxCornerRadiusTopEnd="16dp"
                 app:boxCornerRadiusBottomStart="16dp"
@@ -193,10 +193,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cantidad"
+                        android:text="@string/cantidad_editar_pd_label"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColor="#1A1A1A"/>
+                        android:textColor="@color/black"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilCantidad"
@@ -204,7 +204,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        app:boxBackgroundColor="#E4E9FF"
+                        app:boxBackgroundColor="@color/lavenderBlue"
                         app:boxCornerRadiusTopStart="16dp"
                         app:boxCornerRadiusTopEnd="16dp"
                         app:boxCornerRadiusBottomStart="16dp"
@@ -234,7 +234,7 @@
                         android:text="Talla"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColor="#1A1A1A"/>
+                        android:textColor="@color/black"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilTalla"
@@ -242,7 +242,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        app:boxBackgroundColor="#E4E9FF"
+                        app:boxBackgroundColor="@color/lavenderBlue"
                         app:boxCornerRadiusTopStart="16dp"
                         app:boxCornerRadiusTopEnd="16dp"
                         app:boxCornerRadiusBottomStart="16dp"
@@ -261,10 +261,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Color"
+                android:text="@string/color_editar_pd_label"
                 android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="#1A1A1A"
+                android:textColor="@string/color_editar_pd_label"
                 android:layout_marginTop="22dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -274,7 +274,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:endIconMode="dropdown_menu"
-                app:boxBackgroundColor="#E4E9FF"
+                app:boxBackgroundColor="@color/lavenderBlue"
                 app:boxCornerRadiusTopStart="16dp"
                 app:boxCornerRadiusTopEnd="16dp"
                 app:boxCornerRadiusBottomStart="16dp"
@@ -284,7 +284,7 @@
                     android:id="@+id/actvColor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Rojo"
+                    android:hint="@string/color_editar_pd_text"
                     android:inputType="none"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -304,7 +304,7 @@
                     app:srcCompat="@drawable/vector_shirt"
 
                 android:scaleType="centerInside"
-                android:contentDescription="@string/preview"/>
+                android:contentDescription="@string/imagen_editar_pd_desc"/>
 
                 <Space
                     android:layout_width="18dp"
@@ -315,12 +315,12 @@
                     android:layout_width="0dp"
                     android:layout_height="52dp"
                     android:layout_weight="1"
-                    android:text="Seleccionar"
+                    android:text="@string/btnseleccionar_editar_pd_text"
                     android:textAllCaps="false"
                     android:textSize="16sp"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/white"
                     app:cornerRadius="18dp"
-                    app:backgroundTint="#5674E6"/>
+                    app:backgroundTint="@color/cornflower_blue"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -331,12 +331,12 @@
         android:id="@+id/btnSave"
         android:layout_width="0dp"
         android:layout_height="64dp"
-        android:text="Guardar cambios"
+        android:text="@string/btnguardar_cambios_editar_pd_text"
         android:textAllCaps="false"
         android:textSize="18sp"
-        android:textColor="@android:color/white"
+        android:textColor="@color/white"
         app:cornerRadius="22dp"
-        app:backgroundTint="#FF784E"
+        app:backgroundTint="@color/orange"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

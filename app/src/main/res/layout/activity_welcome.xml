@@ -5,7 +5,7 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@color/white">
 
     <!-- Logo -->
     <ImageView
@@ -24,11 +24,11 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cypher"
+        android:text="@string/app_title"
         android:textSize="28sp"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:fontFamily="cursive"
-        android:shadowColor="#55000000"
+        android:shadowColor="@color/gray"
         android:shadowDx="0"
         android:shadowDy="2"
         android:shadowRadius="4"
@@ -42,7 +42,7 @@
         android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:text="Iniciar Sesión"
+        android:text="@string/btnlogin_text"
         android:textAllCaps="false"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -56,15 +56,15 @@
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
         android:layout_marginTop="36dp"
-        app:backgroundTint="#5674E6"
-        android:textColor="@android:color/white" />
+        app:backgroundTint="@color/blueberry"
+        android:textColor="@color/white" />
 
     <!-- Register -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRegister"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:text="Registrarse"
+        android:text="@string/btnregistrarse_text"
         android:textAllCaps="false"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -77,8 +77,8 @@
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
         android:layout_marginTop="18dp"
-        app:backgroundTint="#5674E6"
-        android:textColor="@android:color/white" />
+        app:backgroundTint="@color/blueberry"
+        android:textColor="@color/white" />
 
 
 

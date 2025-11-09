@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@color/white">
 
     <!-- Back circle -->
     <FrameLayout
@@ -34,10 +34,10 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Creación de Productos"
+        android:text="@string/activity_creacion_pd_title"
         android:textStyle="bold"
         android:textSize="24sp"
-        android:textColor="#1A1A1A"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="@id/backContainer"
         app:layout_constraintBottom_toBottomOf="@id/backContainer"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,9 +67,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre"
+                android:text="@string/nombre_pd_label_text"
                 android:textSize="18sp"
-                android:textColor="#1A1A1A"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginTop="8dp"/>
 
@@ -78,7 +78,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxBackgroundColor="#F6F7FA"
+                app:boxBackgroundColor="@color/lavenderBlue"
                 app:boxCornerRadiusTopStart="16dp"
                 app:boxCornerRadiusTopEnd="16dp"
                 app:boxCornerRadiusBottomStart="16dp"
@@ -88,7 +88,6 @@
                     android:id="@+id/etNombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint=""
                     android:inputType="textCapSentences"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -96,9 +95,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Categoría"
+                android:text="@string/categoria_pd_label_text"
                 android:textSize="18sp"
-                android:textColor="#1A1A1A"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginTop="22dp"/>
 
@@ -107,7 +106,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxBackgroundColor="#F6F7FA"
+                app:boxBackgroundColor="@color/lavenderBlue"
                 app:boxCornerRadiusTopStart="16dp"
                 app:boxCornerRadiusTopEnd="16dp"
                 app:boxCornerRadiusBottomStart="16dp"
@@ -124,9 +123,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Precio"
+                android:text="@string/precio_pd_label_text"
                 android:textSize="18sp"
-                android:textColor="#1A1A1A"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginTop="22dp"/>
 
@@ -135,7 +134,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxBackgroundColor="#F6F7FA"
+                app:boxBackgroundColor="@color/lavenderBlue"
                 app:boxCornerRadiusTopStart="16dp"
                 app:boxCornerRadiusTopEnd="16dp"
                 app:boxCornerRadiusBottomStart="16dp"
@@ -152,9 +151,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Descripción"
+                android:text="@string/descripcion_pd_label_text"
                 android:textSize="18sp"
-                android:textColor="#1A1A1A"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginTop="22dp"/>
 
@@ -163,7 +162,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxBackgroundColor="#F6F7FA"
+                app:boxBackgroundColor="@color/lavenderBlue"
                 app:boxCornerRadiusTopStart="16dp"
                 app:boxCornerRadiusTopEnd="16dp"
                 app:boxCornerRadiusBottomStart="16dp"
@@ -195,10 +194,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cantidad"
+                        android:text="@string/cantidad_pd_label_text"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColor="#1A1A1A"/>
+                        android:textColor="@color/black"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilCantidad"
@@ -206,7 +205,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        app:boxBackgroundColor="#F6F7FA"
+                        app:boxBackgroundColor="@color/lavenderBlue"
                         app:boxCornerRadiusTopStart="16dp"
                         app:boxCornerRadiusTopEnd="16dp"
                         app:boxCornerRadiusBottomStart="16dp"
@@ -233,10 +232,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Talla"
+                        android:text="@string/talla_pd_label_text"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColor="#1A1A1A"/>
+                        android:textColor="@color/black"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilTalla"
@@ -244,7 +243,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        app:boxBackgroundColor="#F6F7FA"
+                        app:boxBackgroundColor="@color/lavenderBlue"
                         app:boxCornerRadiusTopStart="16dp"
                         app:boxCornerRadiusTopEnd="16dp"
                         app:boxCornerRadiusBottomStart="16dp"
@@ -263,10 +262,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Color"
+                android:text="@string/color_pd_label_text"
                 android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="#1A1A1A"
+                android:textColor="@color/black"
                 android:layout_marginTop="22dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -276,7 +275,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:endIconMode="dropdown_menu"
-                app:boxBackgroundColor="#F6F7FA"
+                app:boxBackgroundColor="@color/lavenderBlue"
                 app:boxCornerRadiusTopStart="16dp"
                 app:boxCornerRadiusTopEnd="16dp"
                 app:boxCornerRadiusBottomStart="16dp"
@@ -286,7 +285,7 @@
                     android:id="@+id/actvColor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Rojo"
+                    android:hint="@string/color_pd_text"
                     android:inputType="none"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -303,7 +302,7 @@
                     android:id="@+id/ivPreview"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    android:contentDescription="@string/preview"
+                    android:contentDescription="@string/imagen_pd_desc"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/vector_shirt" />
 
@@ -316,12 +315,12 @@
                     android:layout_width="0dp"
                     android:layout_height="52dp"
                     android:layout_weight="1"
-                    android:text="Seleccionar"
+                    android:text="@string/btnseleccionar_text"
                     android:textAllCaps="false"
                     android:textSize="16sp"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/white"
                     app:cornerRadius="18dp"
-                    app:backgroundTint="#5674E6"/>
+                    app:backgroundTint="@color/cornflower_blue"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -331,11 +330,11 @@
         android:id="@+id/bottomButton"
         android:layout_width="0dp"
         android:layout_height="64dp"
-        android:text="Crear producto"
+        android:text="@string/btncrear_pd_text"
         android:textAllCaps="false"
         android:textSize="18sp"
-        android:textColor="@android:color/white"
-        app:backgroundTint="#FF784E"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/orange"
         app:cornerRadius="22dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

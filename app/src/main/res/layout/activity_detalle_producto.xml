@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@color/white">
 
     <!-- Header image -->
     <ImageView
@@ -13,9 +13,9 @@
         android:layout_height="260dp"
         android:scaleType="centerCrop"
         android:src="@drawable/sample_product_large"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- Back circle on top of image -->
     <FrameLayout
@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@id/imgHeader"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottomBar">
+        app:layout_constraintBottom_toTopOf="@+id/btnUpdate">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,30 +72,30 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Hoodie Flamas"
+                    android:text="@string/titulo_detalle_pd_text"
                     android:textStyle="bold"
                     android:textSize="22sp"
-                    android:textColor="#111111"/>
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/tvPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$170.000"
-                    android:textStyle="bold"
+                    android:text="@string/precio_detalle_pd_text"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textColor="#111111"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <!-- Talla -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Talla"
+                android:text="@string/talla_detalle_pd_text"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:layout_marginTop="14dp"
-                android:textColor="#111111"/>
+                android:textColor="@color/black"/>
 
             <!-- Size chips -->
             <LinearLayout
@@ -105,7 +105,6 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="8dp">
 
-                <!-- Copy this MaterialButton for all sizes you need -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSizeS"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -113,12 +112,12 @@
                     android:layout_height="48dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:text="S"
+                    android:text="@string/talla_s_detalle_pd_text"
                     android:textAllCaps="false"
                     app:cornerRadius="12dp"
-                    app:strokeColor="#E6E8EE"
+                    app:strokeColor="@color/lavender_mist"
                     app:strokeWidth="1dp"
-                    app:backgroundTint="#F6F7FA"/>
+                    app:backgroundTint="@color/lavenderBlue"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSizeM"
@@ -127,12 +126,12 @@
                     android:layout_height="48dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:text="M"
+                    android:text="@string/talla_m_detalle_pd_text"
                     android:textAllCaps="false"
                     app:cornerRadius="12dp"
-                    app:strokeColor="#E6E8EE"
+                    app:strokeColor="@color/lavender_mist"
                     app:strokeWidth="1dp"
-                    app:backgroundTint="#F6F7FA"/>
+                    app:backgroundTint="@color/lavenderBlue"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSizeL"
@@ -141,12 +140,12 @@
                     android:layout_height="48dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:text="L"
+                    android:text="@string/talla_l_detalle_pd_text"
                     android:textAllCaps="false"
                     app:cornerRadius="12dp"
-                    app:strokeColor="#E6E8EE"
+                    app:strokeColor="@color/lavender_mist"
                     app:strokeWidth="1dp"
-                    app:backgroundTint="#F6F7FA"/>
+                    app:backgroundTint="@color/lavenderBlue"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSizeXL"
@@ -155,12 +154,12 @@
                     android:layout_height="48dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:text="XL"
+                    android:text="@string/talla_xl_detalle_pd_text"
                     android:textAllCaps="false"
                     app:cornerRadius="12dp"
-                    app:strokeColor="#E6E8EE"
+                    app:strokeColor="@color/lavender_mist"
                     app:strokeWidth="1dp"
-                    app:backgroundTint="#F6F7FA"/>
+                    app:backgroundTint="@color/lavenderBlue"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSize2XL"
@@ -168,23 +167,23 @@
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:text="2XL"
+                    android:text="@string/talla_2xl_detalle_pd_text"
                     android:textAllCaps="false"
                     app:cornerRadius="12dp"
-                    app:strokeColor="#E6E8EE"
+                    app:strokeColor="@color/lavender_mist"
                     app:strokeWidth="1dp"
-                    app:backgroundTint="#F6F7FA"/>
+                    app:backgroundTint="@color/lavenderBlue"/>
             </LinearLayout>
 
             <!-- Color -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Color"
+                android:text="@string/color_detalle_pd_label"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:layout_marginTop="16dp"
-                android:textColor="#111111"/>
+                android:textColor="@color/black"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilColor"
@@ -192,7 +191,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:boxBackgroundColor="#F6F7FA"
+                app:boxBackgroundColor="@color/lavenderBlue"
                 app:boxCornerRadiusTopStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
@@ -204,18 +203,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none"
-                    android:hint="Rojo"/>
+                    android:hint="@string/color_pd_label_text"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Cantidad -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cantidad"
+                android:text="@string/cantidad_detalle_pd_label"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:layout_marginTop="16dp"
-                android:textColor="#111111"/>
+                android:textColor="@color/black"/>
 
             <LinearLayout
                 android:id="@+id/qtyRow"
@@ -231,8 +230,8 @@
                     android:layout_height="36dp"
                     android:background="@drawable/bg_circle_soft"
                     android:src="@drawable/ic_chevron_down_24"
-                    android:contentDescription="@string/decrease"
-                    app:tint="#8A8F98"/>
+                    android:contentDescription="@string/btndisminuir_cantidad_text"
+                    app:tint="@color/gray"/>
 
                 <TextView
                     android:id="@+id/tvQty"
@@ -241,7 +240,7 @@
                     android:gravity="center"
                     android:text="1"
                     android:textSize="16sp"
-                    android:textColor="#111111"
+                    android:textColor="@color/black"
                     android:layout_marginHorizontal="8dp"
                     android:background="@drawable/bg_chip_soft"/>
 
@@ -251,50 +250,47 @@
                     android:layout_height="36dp"
                     android:background="@drawable/bg_circle_soft"
                     android:src="@drawable/ic_chevron_up_24"
-                    android:contentDescription="@string/increase"
-                    app:tint="#8A8F98"/>
+                    android:contentDescription="@string/btnaumentar_cantidad_text"
+                    app:tint="@color/gray"/>
             </LinearLayout>
 
             <!-- Descripción -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Descripción"
+                android:text="@string/descripcion_detalle_pd_label"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:layout_marginTop="16dp"
-                android:textColor="#111111"/>
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/tvDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hoodie estilo hip hop con estampados gráficos en llamas y letras urbanas, ideal para un look callejero y atrevido."
+                android:text="@string/descripcion_pd_label_text"
                 android:textSize="14sp"
-                android:textColor="#6B7280"
+                android:textColor="@color/gray"
                 android:layout_marginTop="8dp"/>
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom bar -->
-    <FrameLayout
-        android:id="@+id/bottomBar"
+    <!-- Bottom Update Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnUpdate"
         android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:background="#8D6BFF"
+        android:layout_height="56dp"
+        android:text="@string/btnActualizar"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        app:cornerRadius="16dp"
+        app:backgroundTint="@color/orange"
+        android:elevation="6dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAddToCart"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Agregar al carrito"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:textColor="@android:color/white"
-            app:backgroundTint="@android:color/transparent"/>
-    </FrameLayout>
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="24dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

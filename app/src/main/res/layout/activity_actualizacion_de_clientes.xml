@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@color/white">
 
     <!-- Back circle -->
     <FrameLayout
@@ -173,8 +173,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/departamento_label_text"
-            android:text="@string/departamento_textbox_text"
-            android:inputType="none" />
+            android:inputType="none"
+            android:text="@string/departamento_textbox_text" />
     </com.google.android.material.textfield.TextInputLayout>
 
 

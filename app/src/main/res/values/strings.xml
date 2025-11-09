@@ -46,7 +46,71 @@
     <string name="vector_tenis_desc">Tenis</string>
     <string name="tenis_label_text">Tenis</string>
 
+    <!-- activity_creacion_de_productos Strings -->
+    <string name="activity_creacion_pd_title">Creación de Productos</string>
+    <string name="nombre_pd_label_text">Nombre</string>
+    <string name="categoria_pd_label_text">Categoría</string>
+    <string name="precio_pd_label_text">Precio</string>
+    <string name="descripcion_pd_label_text">Descripción</string>
+    <string name="cantidad_pd_label_text">Cantidad</string>
+    <string name="talla_pd_label_text">Talla</string>
+    <string name="color_pd_label_text">Color</string>
+    <string name="color_pd_text">Rojo</string>
+    <string name="imagen_pd_desc">Vista previa imagen</string>
+    <string name="btnseleccionar_text">Seleccionar</string>
+    <string name="btncrear_pd_text">Crear Producto</string>
+
+    <!-- activity_detalle_producto Strings -->
+    <string name="titulo_detalle_pd_text">Hoodie Flamas</string>
+    <string name="precio_detalle_pd_text">$170.000</string>
+    <string name="talla_detalle_pd_text">Talla</string>
+    <string name="talla_s_detalle_pd_text">S</string>
+    <string name="talla_m_detalle_pd_text">M</string>
+    <string name="talla_l_detalle_pd_text">L</string>
+    <string name="talla_xl_detalle_pd_text">XL</string>
+    <string name="talla_2xl_detalle_pd_text">2XL</string>
+    <string name="color_detalle_pd_label">Color</string>
+    <string name="color_detalle_pd_text">Rojo</string>
+    <string name="cantidad_detalle_pd_label">Cantidad</string>
+    <string name="btndisminuir_cantidad_text">Disminuir</string>
+    <string name="btnaumentar_cantidad_text">Aumentar</string>
+    <string name="descripcion_detalle_pd_label">Descripción</string>
+    <string name="descripcion_detalle_pd_text">Hoodie estilo hip hop con estampados gráficos en llamas y letras urbanas, ideal para un look callejero y atrevido.</string>
+
+    <!-- activity_editar_producto Strings -->
+    <string name="activity_editar_productos">Editar Producto</string>
+    <string name="nombre_editar_pd_label">Nombre</string>
+    <string name="categoria_editar_pd_label">Categoría</string>
+    <string name="precio_editar_pd_label">Precio</string>
+    <string name="descripcion_editar_pd_label">Descripción</string>
+    <string name="cantidad_editar_pd_label">Cantidad</string>
+    <string name="talla_editar_pd_label">Talla</string>
+    <string name="color_editar_pd_label">Color</string>
+    <string name="color_editar_pd_text">Color</string>
+    <string name="imagen_editar_pd_desc">Vista previa imagen</string>
+    <string name="btnseleccionar_editar_pd_text">Seleccionar</string>
+    <string name="btnguardar_cambios_editar_pd_text">Guardar Cambios</string>
+
+    <!-- activity_item_carrito Strings -->
+    <string name="titulo_pd_item_carrito">Hoodie Flama</string>
+    <string name="talla_pd_item_carrito_label">Talla:</string>
+    <string name="talla_pd_item_carrito_text">S</string>
+    <string name="color_pd_item_carrito_label">Color:</string>
+    <string name="color_pd_item_carrito_text">Azul y blanco</string>
+    <string name="btndisminuir_cantidad_item_carrito_text">Disminuir</string>
+    <string name="btnaumentar_cantidad_item_carrito_text">Aumentar</string>
+    <string name="precio_pd_item_carrito_text">$170.000</string>
 
 
 
+
+
+
+
+    <!-- activity_splash Strings -->
+    <string name="app_title">Cypher</string>
+
+    <!-- activity_welcome Strings -->
+    <string name="btnlogin_text">Iniciar Sesión</string>
+    <string name="btnregistrarse_text">Registrarse</string>
 </resources>
