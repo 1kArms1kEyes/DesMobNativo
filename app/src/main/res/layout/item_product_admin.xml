@@ -8,83 +8,83 @@
     app:cardCornerRadius="20dp"
     app:cardUseCompatPadding="true"
     app:cardElevation="2dp"
-    app:cardBackgroundColor="#F7F8FC">
+    app:cardBackgroundColor="@color/light_gray">
 
-<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:padding="14dp">-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="14dp">
 
-<!--        &lt;!&ndash; Product image &ndash;&gt;-->
-<!--        <com.google.android.material.imageview.ShapeableImageView-->
-<!--            android:id="@+id/imgProduct"-->
-<!--            android:layout_width="128dp"-->
-<!--            android:layout_height="128dp"-->
-<!--            android:scaleType="centerCrop"-->
-<!--            android:src="@drawable/sample_product"-->
-<!--            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialComponents.RoundedMedium"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"/>-->
+        <!-- Product image -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgProduct"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/sample_product"
+            app:shapeAppearanceOverlay="@style/RoundedMd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-<!--        &lt;!&ndash; Code &ndash;&gt;-->
-<!--        <TextView-->
-<!--            android:id="@+id/tvCode"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="001"-->
-<!--            android:textSize="18sp"-->
-<!--            android:textColor="#8A8F98"-->
-<!--            app:layout_constraintStart_toEndOf="@id/imgProduct"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/actions"-->
-<!--            app:layout_constraintTop_toTopOf="@id/imgProduct"-->
-<!--            android:layout_marginStart="16dp"/>-->
+        <!-- Code -->
+        <TextView
+            android:id="@+id/tvCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/order_item_item_product_text"
+            android:textSize="18sp"
+            android:textColor="@color/gray"
+            app:layout_constraintStart_toEndOf="@id/imgProduct"
+            app:layout_constraintEnd_toStartOf="@+id/actions"
+            app:layout_constraintTop_toTopOf="@id/imgProduct"
+            android:layout_marginStart="16dp"/>
 
-<!--        &lt;!&ndash; Name &ndash;&gt;-->
-<!--        <TextView-->
-<!--            android:id="@+id/tvName"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Hoodie Legend 2Pac"-->
-<!--            android:textColor="#111111"-->
-<!--            android:textSize="20sp"-->
-<!--            android:textStyle="bold"-->
-<!--            android:maxLines="2"-->
-<!--            android:ellipsize="end"-->
-<!--            app:layout_constraintStart_toStartOf="@id/tvCode"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/actions"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/tvCode"-->
-<!--            android:layout_marginTop="8dp"/>-->
+        <!-- Name -->
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/product_item_product_admin_text"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintStart_toStartOf="@id/tvCode"
+            app:layout_constraintEnd_toStartOf="@+id/actions"
+            app:layout_constraintTop_toBottomOf="@id/tvCode"
+            android:layout_marginTop="8dp"/>
 
-<!--        &lt;!&ndash; Edit / Delete column &ndash;&gt;-->
-<!--        <LinearLayout-->
-<!--            android:id="@+id/actions"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="@id/imgProduct"-->
-<!--            app:layout_constraintBottom_toBottomOf="@id/imgProduct">-->
+        <!-- Edit / Delete column -->
+        <LinearLayout
+            android:id="@+id/actions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imgProduct"
+            app:layout_constraintBottom_toBottomOf="@id/imgProduct">
 
-<!--            <ImageButton-->
-<!--                android:id="@+id/btnEdit"-->
-<!--                android:layout_width="40dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:background="@drawable/bg_circle_soft"-->
-<!--                app:srcCompat="@drawable/ic_edit_24"-->
-<!--                android:contentDescription="@string/edit"-->
-<!--                app:tint="#111111"-->
-<!--                android:layout_marginBottom="12dp"/>-->
+            <ImageButton
+                android:id="@+id/btnEdit"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_circle_soft"
+                app:srcCompat="@drawable/ic_edit_24"
+                android:contentDescription="@string/btneditar_item_product_admin_desc"
+                app:tint="@color/black"
+                android:layout_marginBottom="12dp"/>
 
-<!--            <ImageButton-->
-<!--                android:id="@+id/btnDelete"-->
-<!--                android:layout_width="40dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:background="@drawable/bg_circle_soft"-->
-<!--                android:src="@drawable/ic_delete_24"-->
-<!--                android:contentDescription="@string/delete"-->
-<!--                app:tint="#111111"/>-->
-<!--        </LinearLayout>-->
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_circle_soft"
+                android:src="@drawable/ic_delete_24"
+                android:contentDescription="@string/btnborrar_item_product_admin_desc"
+                app:tint="@color/black"/>
+        </LinearLayout>
 
-<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

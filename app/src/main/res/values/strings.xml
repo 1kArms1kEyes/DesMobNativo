@@ -133,7 +133,16 @@
     <string name="busqueda_perfil_usuario_label">Busqueda</string>
 
     <!-- activity_registro_de_clientes Strings -->
-    <!-- PENDIENTE ADICIONAR -->
+    <string name="activity_registro_de_clientes">Registro de Clientes</string>
+    <string name="usuario_registro_de_clientes_label">Nombre de Usuario*</string>
+    <string name="contrasenia_registro_de_clientes_label">Contraseña*</string>
+    <string name="correo_registro_de_clientes_label">Correo *</string>
+    <string name="telefono_registro_de_clientes_label">Telefono*</string>
+    <string name="departamento_registro_de_clientes_label">Departamento *</string>
+    <string name="municipio_registro_de_clientes_label">Municipio *</string>
+    <string name="direccion_registro_de_clientes_label">Dirección *</string>
+    <string name="btnregistar_registro_de_clientes_label">Registrar</string>
+
 
     <!-- activity_splash Strings -->
     <string name="app_title">Cypher</string>
@@ -147,6 +156,23 @@
     <string name="btnclose_dialog_confirm_label">Cerrar</string>
     <string name="btnno_dialog_confirm_label">No</string>
     <string name="btnsi_dialog_confirm_label">Sí</string>
+
+    <!-- item_order Strings -->
+    <string name="fecha_pedido_item_order_text">2025/01/10</string>
+    <string name="pedido_item_order_label">Pedido No.</string>
+    <string name="order_number_item_order_text">213541</string>
+    <string name="product_item_order_text">Hoodie Carmesí</string>
+    <string name="precio_item_order_text">100.000</string>
+
+    <!-- item_product Strings -->
+    <string name="product_item_product_label">Hoodie Carmesí</string>
+    <string name="precio_item_product_label">$130.000</string>
+    <string name="order_item_item_product_text">001</string>
+
+    <!-- item_product_admin Strings -->
+    <string name="product_item_product_admin_text">Hoodie Legend 2Pac</string>
+    <string name="btneditar_item_product_admin_desc">Editar</string>
+    <string name="btnborrar_item_product_admin_desc">Borrar</string>
 
 
 </resources>

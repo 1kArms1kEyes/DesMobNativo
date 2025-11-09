@@ -8,59 +8,61 @@
     app:cardCornerRadius="20dp"
     app:cardElevation="2dp"
     app:cardUseCompatPadding="true"
-    app:strokeWidth="0dp">
+    app:strokeWidth="0dp"
+    app:cardBackgroundColor="@color/white">
 
-<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:padding="14dp">-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="14dp">
 
-<!--        &lt;!&ndash; Product image &ndash;&gt;-->
-<!--        <com.google.android.material.imageview.ShapeableImageView-->
-<!--            android:id="@+id/imgProduct"-->
-<!--            android:layout_width="110dp"-->
-<!--            android:layout_height="110dp"-->
-<!--            android:scaleType="centerCrop"-->
-<!--            android:src="@drawable/sample_product"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialComponents.RoundedMedium" />-->
+        <!-- Product image -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgProduct"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/sample_product"
+            app:shapeAppearanceOverlay="@style/RoundedMd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-<!--        &lt;!&ndash; Text container &ndash;&gt;-->
-<!--        <LinearLayout-->
-<!--            android:id="@+id/textContainer"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="16dp"-->
-<!--            android:orientation="vertical"-->
-<!--            app:layout_constraintBottom_toBottomOf="@id/imgProduct"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toEndOf="@id/imgProduct"-->
-<!--            app:layout_constraintTop_toTopOf="@id/imgProduct">-->
 
-<!--            &lt;!&ndash; Product title &ndash;&gt;-->
-<!--            <TextView-->
-<!--                android:id="@+id/tvTitle"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:ellipsize="end"-->
-<!--                android:maxLines="2"-->
-<!--                android:text="Hoodie Legend 2Pac"-->
-<!--                android:textColor="#111111"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textStyle="bold" />-->
+        <!-- Text container -->
+        <LinearLayout
+            android:id="@+id/textContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="@id/imgProduct"
+            app:layout_constraintBottom_toBottomOf="@id/imgProduct"
+            app:layout_constraintStart_toEndOf="@id/imgProduct"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="16dp">
 
-<!--            &lt;!&ndash; Product price &ndash;&gt;-->
-<!--            <TextView-->
-<!--                android:id="@+id/tvPrice"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="4dp"-->
-<!--                android:text="$130.000"-->
-<!--                android:textColor="#8A8F98"-->
-<!--                android:textSize="15sp" />-->
-<!--        </LinearLayout>-->
+            <!-- Product title -->
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/product_item_product_label"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:maxLines="2"
+                android:ellipsize="end" />
 
-<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+            <!-- Product price -->
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/precio_item_product_label"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
