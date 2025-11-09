@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
-
+    android:background="@color/white">
 
     <!-- Header block -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,10 +23,10 @@
             android:layout_width="104dp"
             android:layout_height="104dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/FotoPerfil"
-        app:shapeAppearanceOverlay="@style/RoundedLg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/foto_perfil"
+            app:shapeAppearanceOverlay="@style/RoundedLg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Small camera badge -->
         <ImageView
@@ -39,30 +38,30 @@
             android:padding="3dp"
             app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
             app:layout_constraintEnd_toEndOf="@id/imgAvatar"
-            android:contentDescription="@string/abc_action_menu_overflow_description" />
+            android:contentDescription="@string/imagen_camara_perfil_usuario_desc" />
 
         <!-- Name -->
         <TextView
             android:id="@+id/tvName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Juana"
+            android:text="@string/nombre_usuario_perfil_usuario_label"
             android:textStyle="bold"
             android:textSize="26sp"
-            android:textColor="#212121"
+            android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@id/imgAvatar"
             app:layout_constraintTop_toTopOf="@id/imgAvatar"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="16dp" />
 
-        <!-- Lastname  -->
+        <!-- Lastname -->
         <TextView
             android:id="@+id/tvLastname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Ramírez."
+            android:text="@string/apellido_usuario_perfil_usuario_label"
             android:textSize="14sp"
-            android:textColor="#757575"
+            android:textColor="@color/gray"
             app:layout_constraintStart_toStartOf="@id/tvName"
             app:layout_constraintTop_toBottomOf="@id/tvName"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,34 +74,88 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="start"
+            android:weightSum="2"
             app:layout_constraintStart_toStartOf="@id/tvName"
             app:layout_constraintTop_toBottomOf="@id/tvLastname"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="10dp">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="42dp"
-                android:text="Editar Datos"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                app:backgroundTint="#5674E6"
-                app:cornerRadius="12dp" />
+            <!-- Left column -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:text="@string/btneditar_datos_perfil_usuario"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:paddingHorizontal="6dp"
+                    app:backgroundTint="@color/blueberry"
+                    app:cornerRadius="12dp" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="8dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnProductList"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:text="Productos"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:paddingHorizontal="6dp"
+                    app:backgroundTint="@color/blueberry"
+                    app:cornerRadius="12dp" />
+            </LinearLayout>
 
             <Space
                 android:layout_width="10dp"
                 android:layout_height="0dp" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="42dp"
-                android:text="Eliminar Cuenta"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                app:backgroundTint="#5674E6"
-                app:cornerRadius="12dp" />
+            <!-- Right column -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDelete"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:text="Eliminar Cuenta"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:paddingHorizontal="6dp"
+                    app:backgroundTint="#5674E6"
+                    app:cornerRadius="12dp" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="8dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBuy"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:text="Comprar"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:paddingHorizontal="6dp"
+                    app:backgroundTint="#5674E6"
+                    app:cornerRadius="12dp" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -119,7 +172,7 @@
         app:layout_constraintTop_toBottomOf="@id/header"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="18dp"/>
+        android:layout_marginTop="18dp" />
 
     <!-- Search input -->
     <com.google.android.material.textfield.TextInputLayout
@@ -147,7 +200,7 @@
             android:layout_height="wrap_content"
             android:hint="     Busqueda"
             android:inputType="text"
-            android:imeOptions="actionSearch"/>
+            android:imeOptions="actionSearch" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Orders list -->
