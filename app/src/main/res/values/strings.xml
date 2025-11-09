@@ -108,6 +108,24 @@
 
     <!-- activity_login Strings -->
     <string name="activity_login">Iniciar Sesión</string>
+    <string name="usuario_login_label">Usuario</string>
+    <string name="usuario_login_text">Esther Howard</string>
+    <string name="contrasenia_login_label">Contraseña</string>
+    <string name="contrasenia_login_text">HJ@#9783kja</string>
+    <string name="olvidar_contrasenia_login_label">Olvidé la contraseña</string>
+    <string name="btningresar_login_label">Ingresar</string>
+
+    <!-- activity_olvidar_contrasenia Strings -->
+    <string name="ingresar_correo_olvidar_contrasenia_label">Ingrese su correo electrónico</string>
+    <string name="ingresar_correo_olvidar_contrasenia_text">Correo</string>
+    <string name="btncancelar_olvidar_contrasenia_label">Cancelar</string>
+    <string name="btnrestablecer_olvidar_contrasenia_label">Restablecer Contraseña</string>
+
+    <!-- activity_perfil_de_usuario Strings -->
+    <string name="imagen_camara_perfil_usuario_desc">Cambiar de Imagen de Perfil</string>
+    <string name="nombre_usuario_perfil_usuario_label">Juana</string>
+    <string name="apellido_usuario_perfil_usuario_label">Ramírez</string>
+    <string name="btneditar_datos_perfil_usuario">Editar Datos</string>
 
 
 
