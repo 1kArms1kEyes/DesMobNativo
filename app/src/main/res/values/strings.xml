@@ -100,9 +100,14 @@
     <string name="btndisminuir_cantidad_item_carrito_text">Disminuir</string>
     <string name="btnaumentar_cantidad_item_carrito_text">Aumentar</string>
     <string name="precio_pd_item_carrito_text">$170.000</string>
+    <string name="btneliminar_item_carrito_text">Eliminar</string>
 
+    <!-- activity_lista_de_producto Strings -->
+    <string name="btnagregar_lista_producto">Agregar</string>
+    <string name="activity_lista_de_producto">Lista de Producto</string>
 
-
+    <!-- activity_login Strings -->
+    <string name="activity_login">Iniciar Sesión</string>
 
 
 
