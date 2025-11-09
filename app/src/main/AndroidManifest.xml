@@ -41,6 +41,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".tests.TestCategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tests.TestUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tests.TestProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tests.TestCartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tests.TestCartItemActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
