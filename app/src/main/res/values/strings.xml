@@ -132,7 +132,8 @@
     <string name="lista_pedidos_perfil_usuario_label">Lista de Pedidos</string>
     <string name="busqueda_perfil_usuario_label">Busqueda</string>
 
-
+    <!-- activity_registro_de_clientes Strings -->
+    <!-- PENDIENTE ADICIONAR -->
 
     <!-- activity_splash Strings -->
     <string name="app_title">Cypher</string>
@@ -140,4 +141,12 @@
     <!-- activity_welcome Strings -->
     <string name="btnlogin_text">Iniciar Sesión</string>
     <string name="btnregistrarse_text">Registrarse</string>
+
+    <!-- dialog_confirm_action Strings -->
+    <string name="confirmacion_dialog_confirm_label">¿Desea crear el [nombre_producto]?</string>
+    <string name="btnclose_dialog_confirm_label">Cerrar</string>
+    <string name="btnno_dialog_confirm_label">No</string>
+    <string name="btnsi_dialog_confirm_label">Sí</string>
+
+
 </resources>
