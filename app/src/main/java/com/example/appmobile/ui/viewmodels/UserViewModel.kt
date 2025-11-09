@@ -1,5 +1,7 @@
 package com.example.appmobile.ui.viewmodels
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.ViewModelProvider
@@ -31,6 +33,15 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
     fun getById(id: Int, callback: (User?) -> Unit) = viewModelScope.launch {
         val user = repository.getById(id)
         callback(user)
+    }
+
+    fun login(username: String, password: String): LiveData<User?> {
+        val result = MutableLiveData<User?>()
+        viewModelScope.launch {
+            val user = repository.login(username, password)
+            result.postValue(user)
+        }
+        return result
     }
 }
 

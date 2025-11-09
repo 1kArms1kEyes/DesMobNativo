@@ -24,4 +24,9 @@ class UserRepository(private val dao: UserDao) {
     suspend fun getById(id: Int): User? {
         return dao.getUserById(id)
     }
+
+    suspend fun login(username: String, password: String): User? {
+        return dao.login(username, password)
+    }
+
 }
