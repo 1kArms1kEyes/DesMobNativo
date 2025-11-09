@@ -136,13 +136,14 @@
             android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:text="@string/precio_pd_item_carrito_text"
-            android:textSize="16sp"
             android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/btnInc"
             app:layout_constraintStart_toEndOf="@id/btnInc"
             app:layout_constraintTop_toTopOf="@id/btnInc"
-            app:layout_constraintBottom_toBottomOf="@id/btnInc"
-            android:layout_marginStart="18dp" />
+            app:layout_constraintVertical_bias="0.428" />
 
         <ImageButton
             android:id="@+id/btnRemove"
@@ -150,8 +151,8 @@
             android:layout_height="40dp"
             android:background="@drawable/bg_circle_soft"
             android:src="@drawable/ic_delete_24"
-            android:contentDescription="@string/delete"
-            app:tint="#8A8F98"
+            android:contentDescription="@string/btneliminar_item_carrito_text"
+            app:tint="@color/gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/btnInc"
             app:layout_constraintBottom_toBottomOf="@id/btnInc" />
