@@ -10,75 +10,80 @@
         android:id="@+id/header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:paddingStart="20dp"
+        android:paddingTop="28dp"
         android:paddingEnd="20dp"
-        android:paddingTop="28dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <!-- Avatar -->
+
+        <!-- Small camera badge -->
+
+        <!-- Name -->
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgAvatar"
             android:layout_width="104dp"
             android:layout_height="104dp"
             android:scaleType="centerCrop"
             android:src="@drawable/foto_perfil"
-            app:shapeAppearanceOverlay="@style/RoundedLg"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/RoundedLg" />
 
-        <!-- Small camera badge -->
         <ImageView
             android:id="@+id/ivCamera"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:src="@drawable/ic_camera_24"
             android:background="@drawable/bg_circle_light"
+            android:contentDescription="@string/imagen_camara_perfil_usuario_desc"
             android:padding="3dp"
+            android:src="@drawable/ic_camera_24"
+            android:clickable="true"
+            android:focusable="true"
             app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
-            app:layout_constraintEnd_toEndOf="@id/imgAvatar"
-            android:contentDescription="@string/imagen_camara_perfil_usuario_desc" />
+            app:layout_constraintEnd_toEndOf="@id/imgAvatar" />
 
-        <!-- Name -->
         <TextView
             android:id="@+id/tvName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:text="@string/nombre_usuario_perfil_usuario_label"
-            android:textStyle="bold"
-            android:textSize="26sp"
             android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@id/imgAvatar"
-            app:layout_constraintTop_toTopOf="@id/imgAvatar"
+            android:textSize="26sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="16dp" />
+            app:layout_constraintStart_toEndOf="@id/imgAvatar"
+            app:layout_constraintTop_toTopOf="@id/imgAvatar" />
 
         <!-- Lastname -->
         <TextView
             android:id="@+id/tvLastname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="@string/apellido_usuario_perfil_usuario_label"
-            android:textSize="14sp"
             android:textColor="@color/gray"
-            app:layout_constraintStart_toStartOf="@id/tvName"
-            app:layout_constraintTop_toBottomOf="@id/tvName"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="4dp" />
+            app:layout_constraintStart_toStartOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
 
         <!-- Buttons row -->
         <LinearLayout
             android:id="@+id/actionsRow"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
             android:gravity="start"
+            android:orientation="horizontal"
             android:weightSum="2"
-            app:layout_constraintStart_toStartOf="@id/tvName"
-            app:layout_constraintTop_toBottomOf="@id/tvLastname"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="10dp">
+            app:layout_constraintStart_toStartOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvLastname">
 
             <!-- Left column -->
             <LinearLayout
@@ -91,11 +96,11 @@
                     android:id="@+id/btnEdit"
                     android:layout_width="match_parent"
                     android:layout_height="42dp"
+                    android:paddingHorizontal="6dp"
                     android:text="@string/btneditar_datos_perfil_usuario_label"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="12sp"
-                    android:paddingHorizontal="6dp"
                     app:backgroundTint="@color/blueberry"
                     app:cornerRadius="12dp" />
 
@@ -107,11 +112,11 @@
                     android:id="@+id/btnProductList"
                     android:layout_width="match_parent"
                     android:layout_height="42dp"
+                    android:paddingHorizontal="6dp"
                     android:text="@string/btnproductos_perfil_usuario_label"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="12sp"
-                    android:paddingHorizontal="6dp"
                     app:backgroundTint="@color/blueberry"
                     app:cornerRadius="12dp" />
             </LinearLayout>
@@ -131,11 +136,11 @@
                     android:id="@+id/btnDelete"
                     android:layout_width="match_parent"
                     android:layout_height="42dp"
+                    android:paddingHorizontal="6dp"
                     android:text="@string/btneliminar_cuenta_perfil_usuario_label"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="12sp"
-                    android:paddingHorizontal="6dp"
                     app:backgroundTint="@color/blueberry"
                     app:cornerRadius="12dp" />
 
@@ -147,11 +152,11 @@
                     android:id="@+id/btnBuy"
                     android:layout_width="match_parent"
                     android:layout_height="42dp"
+                    android:paddingHorizontal="6dp"
                     android:text="@string/btncomprar_perfil_usuario_label"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="12sp"
-                    android:paddingHorizontal="6dp"
                     app:backgroundTint="@color/blueberry"
                     app:cornerRadius="12dp" />
             </LinearLayout>
@@ -165,14 +170,14 @@
         android:id="@+id/tvOrdersTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="18dp"
         android:text="@string/lista_pedidos_perfil_usuario_label"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/header"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="18dp" />
+        app:layout_constraintTop_toBottomOf="@id/header" />
 
     <!-- Search input -->
     <com.google.android.material.textfield.TextInputLayout
@@ -180,28 +185,28 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
         android:hint="@string/busqueda_perfil_usuario_label"
         app:boxBackgroundColor="@color/light_gray"
-        app:boxCornerRadiusTopStart="16dp"
-        app:boxCornerRadiusTopEnd="16dp"
-        app:boxCornerRadiusBottomStart="16dp"
         app:boxCornerRadiusBottomEnd="16dp"
-        app:endIconMode="custom"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
         app:endIconDrawable="@drawable/ic_search_24"
+        app:endIconMode="custom"
         app:endIconTint="@color/gray"
-        app:layout_constraintTop_toBottomOf="@id/tvOrdersTitle"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="10dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvOrdersTitle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:imeOptions="actionSearch" />
+            android:imeOptions="actionSearch"
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Orders list -->
@@ -209,11 +214,13 @@
         android:id="@+id/rvOrders"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/tilSearch"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:paddingTop="8dp"
-        android:paddingBottom="12dp" />
+        android:paddingBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilSearch"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

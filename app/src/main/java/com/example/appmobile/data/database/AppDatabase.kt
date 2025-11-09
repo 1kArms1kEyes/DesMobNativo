@@ -219,14 +219,14 @@ abstract class AppDatabase : RoomDatabase() {
                         cartItemDao.insertCartItem(
                             CartItem(
                                 productId = 3,
-                                cartId = 3,
+                                cartId = 4,
                                 cartItemQuantity = 10
                             )
                         )
                         cartItemDao.insertCartItem(
                             CartItem(
                                 productId = 3,
-                                cartId = 3,
+                                cartId = 5,
                                 cartItemQuantity = 10
                             )
                         )
