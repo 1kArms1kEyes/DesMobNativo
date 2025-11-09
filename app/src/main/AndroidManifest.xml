@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppMobile">
+
+        <!-- Feature activities -->
         <activity
             android:name=".activities.EditarProductosActivity"
             android:exported="false" />
@@ -23,9 +25,12 @@
         <activity
             android:name=".activities.ActualizacionDeClientesActivity"
             android:exported="false" />
+
+        <!-- ✅ PerfilDeUsuarioActivity is correctly declared -->
         <activity
             android:name=".activities.PerfilDeUsuarioActivity"
             android:exported="false" />
+
         <activity
             android:name=".activities.OlvidarContraseniaActivity"
             android:exported="false" />
@@ -38,15 +43,18 @@
         <activity
             android:name=".activities.WelcomeActivity"
             android:exported="false" />
+
+        <!-- Launcher activity -->
         <activity
             android:name=".activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Test activities -->
         <activity
             android:name=".tests.TestCategoryActivity"
             android:exported="false" />
@@ -62,6 +70,7 @@
         <activity
             android:name=".tests.TestCartItemActivity"
             android:exported="false" />
+
     </application>
 
 </manifest>
