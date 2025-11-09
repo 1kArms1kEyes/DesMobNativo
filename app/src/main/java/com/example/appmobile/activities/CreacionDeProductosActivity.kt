@@ -25,6 +25,7 @@ import com.example.appmobile.ui.viewmodels.ProductViewModelFactory
 class CreacionDeProductosActivity : AppCompatActivity() {
     private lateinit var viewModel: ProductViewModel
     private var selectedImageUri: Uri? = null
+    private var ivPreview: ImageView? = null
 
     // Listas permitidas
     private val allowedCategories = listOf("Hoodies", "Camisetas", "Snapbacks", "Tenis")
@@ -38,8 +39,6 @@ class CreacionDeProductosActivity : AppCompatActivity() {
                 ivPreview?.setImageURI(uri)
             }
         }
-
-    private var ivPreview: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,7 +79,6 @@ class CreacionDeProductosActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        // Dropdown
         val colorAdapter = ArrayAdapter(
             this,
             android.R.layout.simple_list_item_1,
@@ -88,12 +86,10 @@ class CreacionDeProductosActivity : AppCompatActivity() {
         )
         actvColor.setAdapter(colorAdapter)
 
-        // Selector de imagen
         btnSeleccionar.setOnClickListener {
             pickImageLauncher.launch("image/*")
         }
 
-        // Botón para crear el producto
         bottomButton.setOnClickListener {
             crearProducto(
                 tilNombre, tilCategoria, tilPrecio, tilDescripcion,
@@ -120,7 +116,6 @@ class CreacionDeProductosActivity : AppCompatActivity() {
         etTalla: TextInputEditText,
         actvColor: MaterialAutoCompleteTextView
     ) {
-        // Limpiar errores previos
         tilNombre.error = null
         tilCategoria.error = null
         tilPrecio.error = null
@@ -139,7 +134,6 @@ class CreacionDeProductosActivity : AppCompatActivity() {
         val tallaInput = etTalla.text?.toString()?.trim().orEmpty()
         val colorInput = actvColor.text?.toString()?.trim().orEmpty()
 
-        // Validaciones
         if (nombre.isEmpty()) {
             tilNombre.error = "El nombre es obligatorio"
             isValid = false
@@ -216,9 +210,7 @@ class CreacionDeProductosActivity : AppCompatActivity() {
             isActive = true
         )
 
-        // Insertar en BD
         viewModel.insert(product)
-
         Toast.makeText(this, "Producto creado correctamente", Toast.LENGTH_SHORT).show()
         finish()
     }
