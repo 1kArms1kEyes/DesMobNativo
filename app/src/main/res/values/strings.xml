@@ -125,8 +125,12 @@
     <string name="imagen_camara_perfil_usuario_desc">Cambiar de Imagen de Perfil</string>
     <string name="nombre_usuario_perfil_usuario_label">Juana</string>
     <string name="apellido_usuario_perfil_usuario_label">Ramírez</string>
-    <string name="btneditar_datos_perfil_usuario">Editar Datos</string>
-
+    <string name="btneditar_datos_perfil_usuario_label">Editar Datos</string>
+    <string name="btnproductos_perfil_usuario_label">Productos</string>
+    <string name="btneliminar_cuenta_perfil_usuario_label">Eliminar Cuenta</string>
+    <string name="btncomprar_perfil_usuario_label">Comprar</string>
+    <string name="lista_pedidos_perfil_usuario_label">Lista de Pedidos</string>
+    <string name="busqueda_perfil_usuario_label">Busqueda</string>
 
 
 
