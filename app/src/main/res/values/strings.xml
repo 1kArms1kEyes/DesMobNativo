@@ -125,10 +125,15 @@
     <string name="imagen_camara_perfil_usuario_desc">Cambiar de Imagen de Perfil</string>
     <string name="nombre_usuario_perfil_usuario_label">Juana</string>
     <string name="apellido_usuario_perfil_usuario_label">Ramírez</string>
-    <string name="btneditar_datos_perfil_usuario">Editar Datos</string>
+    <string name="btneditar_datos_perfil_usuario_label">Editar Datos</string>
+    <string name="btnproductos_perfil_usuario_label">Productos</string>
+    <string name="btneliminar_cuenta_perfil_usuario_label">Eliminar Cuenta</string>
+    <string name="btncomprar_perfil_usuario_label">Comprar</string>
+    <string name="lista_pedidos_perfil_usuario_label">Lista de Pedidos</string>
+    <string name="busqueda_perfil_usuario_label">Busqueda</string>
 
-
-
+    <!-- activity_registro_de_clientes Strings -->
+    <!-- PENDIENTE ADICIONAR -->
 
     <!-- activity_splash Strings -->
     <string name="app_title">Cypher</string>
@@ -136,4 +141,12 @@
     <!-- activity_welcome Strings -->
     <string name="btnlogin_text">Iniciar Sesión</string>
     <string name="btnregistrarse_text">Registrarse</string>
+
+    <!-- dialog_confirm_action Strings -->
+    <string name="confirmacion_dialog_confirm_label">¿Desea crear el [nombre_producto]?</string>
+    <string name="btnclose_dialog_confirm_label">Cerrar</string>
+    <string name="btnno_dialog_confirm_label">No</string>
+    <string name="btnsi_dialog_confirm_label">Sí</string>
+
+
 </resources>
