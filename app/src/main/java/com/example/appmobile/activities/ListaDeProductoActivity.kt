@@ -4,59 +4,107 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.ImageView
-import androidx.activity.enableEdgeToEdge
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.button.MaterialButton
 import com.example.appmobile.R
-import com.example.appmobile.data.database.AppDatabase
-import com.example.appmobile.ui.viewmodels.adapters.AdminProductsAdapter
 import kotlinx.coroutines.launch
 
-class ListaDeProductoActivity : AppCompatActivity() {
+import com.example.appmobile.activities.CreacionDeProductosActivity
+import com.example.appmobile.activities.EditarProductosActivity
+import com.example.appmobile.data.database.AppDatabase
+import com.example.appmobile.data.dao.ProductDao
+import com.example.appmobile.data.entities.Product
+import com.example.appmobile.ui.viewmodels.adapters.AdminProductsAdapter
 
-    // Adapter that will control how products are shown in the RecyclerView
+class ListaDeProductoActivity : AppCompatActivity() {
     private lateinit var productsAdapter: AdminProductsAdapter
+    private lateinit var productDao: ProductDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // You had this commented out before, we can leave it like that if you prefer:
-        // enableEdgeToEdge()
         setContentView(R.layout.activity_lista_de_producto)
 
-        // --- "Add" button (top right circle) ---
+        val db = AppDatabase.getDatabase(this)
+        productDao = db.productDao()
+
         val btnAdd = findViewById<ImageView>(R.id.btnAdd)
         btnAdd.setOnClickListener {
             val intent = Intent(this, CreacionDeProductosActivity::class.java)
             startActivity(intent)
         }
 
-        // --- Optional: Back button (top left circle) ---
-        // This matches the ImageButton with id btnBack in your XML
         val btnBack = findViewById<ImageButton>(R.id.btnBack)
         btnBack.setOnClickListener {
-            // Close this screen and return to the previous one
             finish()
         }
 
-        // --- 1. Setup RecyclerView ---
         val rvAdminProducts = findViewById<RecyclerView>(R.id.rvAdminProducts)
         rvAdminProducts.layoutManager = LinearLayoutManager(this)
-        productsAdapter = AdminProductsAdapter()
+
+        productsAdapter = AdminProductsAdapter(
+            onEditClick = { product ->
+                editProduct(product)
+            },
+            onDeleteClick = { product ->
+                showDeleteProductDialog(product)
+            }
+        )
+
         rvAdminProducts.adapter = productsAdapter
 
-        // --- 2. Get a reference to the Room database and ProductDao ---
-        val db = AppDatabase.getDatabase(applicationContext)
-        val productDao = db.productDao()
-
-        // --- 3. Collect products from the database and send them to the adapter ---
         lifecycleScope.launch {
-            // getAllProducts() returns a Flow<List<Product>>
             productDao.getAllProducts().collect { products ->
-                // This updates the RecyclerView with the latest products
                 productsAdapter.submitList(products)
             }
+        }
+    }
+
+    private fun editProduct(product: Product) {
+        val intent = Intent(this, EditarProductosActivity::class.java)
+        intent.putExtra("product_id", product.productId)
+        startActivity(intent)
+    }
+
+    private fun showDeleteProductDialog(product: Product) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_confirm_action, null)
+
+        val tvTitle = dialogView.findViewById<TextView>(R.id.tvTitle)
+        tvTitle.text = "Eliminar producto"
+
+        val btnNo = dialogView.findViewById<MaterialButton>(R.id.btnNo)
+        val btnSi = dialogView.findViewById<MaterialButton>(R.id.btnSi)
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
+        btnNo.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        btnSi.setOnClickListener {
+            deleteProduct(product)
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
+    private fun deleteProduct(product: Product) {
+        lifecycleScope.launch {
+            productDao.deleteProduct(product)
+
+            Toast.makeText(
+                this@ListaDeProductoActivity,
+                "Producto eliminado correctamente",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 }
