@@ -41,11 +41,10 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_perfil_de_usuario)
 
-        // --- Find views for avatar and camera ---
+        // --- Avatar and camera setup ---
         imgAvatar = findViewById(R.id.imgAvatar)
         ivCamera = findViewById(R.id.ivCamera)
 
-        // When the camera icon is clicked, open the image picker
         ivCamera.setOnClickListener {
             openImagePicker()
         }
@@ -57,17 +56,25 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // --- 1. Setup RecyclerView ---
+        // --- NEW / RELEVANT PART: "Compras" button opens CompraActivity ---
+        val btnBuy = findViewById<Button>(R.id.btnBuy)
+        btnBuy.setOnClickListener {
+            val intent = Intent(this, CompraActivity::class.java)
+            startActivity(intent)
+        }
+        // --- END OF FEATURE-RELATED CODE ---
+
+        // --- Orders RecyclerView setup ---
         val rvOrders = findViewById<RecyclerView>(R.id.rvOrders)
         rvOrders.layoutManager = LinearLayoutManager(this)
         ordersAdapter = OrdersAdapter()
         rvOrders.adapter = ordersAdapter
 
-        // --- 2. Get a reference to your Room database ---
+        // --- Room database for carts/orders ---
         val db = AppDatabase.getDatabase(applicationContext)
         val cartDao = db.cartDao()
 
-        // --- 3. Collect data from the database and update the RecyclerView ---
+        // --- Collect data from the database and update the RecyclerView ---
         lifecycleScope.launch {
             cartDao.getCartSummaries().collect { summaries ->
                 ordersAdapter.submitList(summaries)

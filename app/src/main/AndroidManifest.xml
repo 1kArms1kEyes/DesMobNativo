@@ -26,7 +26,6 @@
             android:name=".activities.ActualizacionDeClientesActivity"
             android:exported="false" />
 
-        <!-- ✅ PerfilDeUsuarioActivity is correctly declared -->
         <activity
             android:name=".activities.PerfilDeUsuarioActivity"
             android:exported="false" />
@@ -42,6 +41,9 @@
             android:exported="false" />
         <activity
             android:name=".activities.WelcomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CompraActivity"
             android:exported="false" />
 
         <!-- Launcher activity -->
