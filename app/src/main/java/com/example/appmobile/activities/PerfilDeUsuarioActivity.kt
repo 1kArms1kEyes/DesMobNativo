@@ -12,10 +12,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appmobile.R
-import com.example.appmobile.data.database.AppDatabase
-import com.example.appmobile.ui.viewmodels.adapters.OrdersAdapter
 import com.google.android.material.imageview.ShapeableImageView
 import kotlinx.coroutines.launch
+
+import com.example.appmobile.data.database.AppDatabase
+import com.example.appmobile.ui.viewmodels.adapters.OrdersAdapter
 
 class PerfilDeUsuarioActivity : AppCompatActivity() {
 
@@ -50,10 +51,15 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
             openImagePicker()
         }
 
-        // --- Existing button: Go to product list ---
         val btnProductList = findViewById<Button>(R.id.btnProductList)
         btnProductList.setOnClickListener {
             val intent = Intent(this, ListaDeProductoActivity::class.java)
+            startActivity(intent)
+        }
+
+        val btnBuyList = findViewById<Button>(R.id.btnBuy)
+        btnBuyList.setOnClickListener {
+            val intent = Intent(this, ComprasActivity::class.java)
             startActivity(intent)
         }
 

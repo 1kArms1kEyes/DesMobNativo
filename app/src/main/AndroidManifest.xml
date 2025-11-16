@@ -14,6 +14,12 @@
 
         <!-- Feature activities -->
         <activity
+            android:name=".activities.CarritoDeComprasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ComprasActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.EditarProductosActivity"
             android:exported="false" />
         <activity
@@ -25,8 +31,6 @@
         <activity
             android:name=".activities.ActualizacionDeClientesActivity"
             android:exported="false" />
-
-        <!-- ✅ PerfilDeUsuarioActivity is correctly declared -->
         <activity
             android:name=".activities.PerfilDeUsuarioActivity"
             android:exported="false" />
