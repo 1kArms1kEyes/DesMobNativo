@@ -14,6 +14,10 @@
 
         <!-- Feature activities -->
         <activity
+            android:name=".activities.ActualizacionDeClientesActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".activities.EditarProductosActivity"
             android:exported="false" />
         <activity
@@ -21,9 +25,6 @@
             android:exported="false" />
         <activity
             android:name=".activities.ListaDeProductoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.ActualizacionDeClientesActivity"
             android:exported="false" />
 
         <activity
@@ -45,6 +46,10 @@
         <activity
             android:name=".activities.CompraActivity"
             android:exported="false" />
+        <activity
+            android:name=".activities.CarritoActivity"
+            android:exported="false" />
+
 
         <!-- Launcher activity -->
         <activity

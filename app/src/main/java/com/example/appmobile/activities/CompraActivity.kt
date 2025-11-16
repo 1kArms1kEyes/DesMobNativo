@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.appmobile.R
 import com.example.appmobile.data.database.AppDatabase
 import com.example.appmobile.ui.viewmodels.adapters.CompraProductsAdapter
+import android.content.Intent
+import android.widget.ImageButton
+import com.example.appmobile.activities.CarritoActivity
 import kotlinx.coroutines.launch
 
 class CompraActivity : AppCompatActivity() {
@@ -34,6 +37,13 @@ class CompraActivity : AppCompatActivity() {
             productDao.getAllProducts().collect { products ->
                 adapter.submitList(products)
             }
+        }
+
+        // 4. Cart button opens CarritoActivity
+        val btnCart = findViewById<ImageButton>(R.id.btnCart)
+        btnCart.setOnClickListener {
+            val intent = Intent(this, CarritoActivity::class.java)
+            startActivity(intent)
         }
     }
 }

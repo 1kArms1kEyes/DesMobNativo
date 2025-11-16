@@ -45,6 +45,7 @@
     <string name="camiseta_label_text">Camisetas</string>
     <string name="vector_tenis_desc">Tenis</string>
     <string name="tenis_label_text">Tenis</string>
+    <string name="btncarrito_desc">Carrito</string>
 
     <!-- activity_creacion_de_productos Strings -->
     <string name="activity_creacion_pd_title">Creación de Productos</string>
@@ -101,6 +102,8 @@
     <string name="btnaumentar_cantidad_item_carrito_text">Aumentar</string>
     <string name="precio_pd_item_carrito_text">$170.000</string>
     <string name="btneliminar_item_carrito_text">Eliminar</string>
+    <string name="precio_unitario_item_carrito_label">Precio unitario:</string>
+    <string name="precio_unitario_item_carrito_text">$170.000</string>
 
     <!-- activity_lista_de_producto Strings -->
     <string name="btnagregar_lista_producto">Agregar</string>
