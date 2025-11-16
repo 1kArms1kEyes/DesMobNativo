@@ -18,7 +18,7 @@
     <string name="municipio_label_text">Municipio*</string>
     <string name="municipio_textbox_text">Bogota</string>
     <string name="direccion_label_text">Dirección*</string>
-    <string name="btnActualizar">Actuaizar</string>
+    <string name="btnActualizar">Actualizar</string>
 
     <!-- activity_carrito Strings -->
     <string name="activity_carrito_title">Carrito</string>
@@ -77,6 +77,7 @@
     <string name="btnaumentar_cantidad_text">Aumentar</string>
     <string name="descripcion_detalle_pd_label">Descripción</string>
     <string name="descripcion_detalle_pd_text">Hoodie estilo hip hop con estampados gráficos en llamas y letras urbanas, ideal para un look callejero y atrevido.</string>
+    <string name="btnagregarCarrito_label">Agregar al Carrito</string>
 
     <!-- activity_editar_producto Strings -->
     <string name="activity_editar_productos">Editar Producto</string>

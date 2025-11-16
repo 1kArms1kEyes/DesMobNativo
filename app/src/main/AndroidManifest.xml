@@ -49,7 +49,9 @@
         <activity
             android:name=".activities.CarritoActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".activities.DetalleProductoActivity"
+            android:exported="false" />
 
         <!-- Launcher activity -->
         <activity

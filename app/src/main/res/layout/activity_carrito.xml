@@ -93,8 +93,8 @@
                     android:id="@+id/ivMap"
                     android:layout_width="72dp"
                     android:layout_height="72dp"
-                    android:src="@drawable/sample_map"
                     android:scaleType="centerCrop"
+                    android:src="@drawable/sample_map"
                     app:shapeAppearanceOverlay="@style/RoundedMd" />
 
                 <LinearLayout
