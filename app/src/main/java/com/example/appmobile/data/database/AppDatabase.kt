@@ -77,7 +77,7 @@ abstract class AppDatabase : RoomDatabase() {
                         categoryDao.insertCategory(Category(categoryName = "Snapbacks"))
                         categoryDao.insertCategory(Category(categoryName = "Tenis"))
 
-                        // Insertar carrito iniciales
+                        // Insertar carritos iniciales
                         val cartDao = database.cartDao()
                         cartDao.insertCart(
                             Cart(
@@ -127,6 +127,8 @@ abstract class AppDatabase : RoomDatabase() {
 
                         // Insertar productos iniciales
                         val productDao = database.productDao()
+
+                        // Producto base: Hoodie Legend 2Pac (M, Negro)
                         productDao.insertProduct(
                             Product(
                                 categoryId = 1,
@@ -140,6 +142,22 @@ abstract class AppDatabase : RoomDatabase() {
                                 isActive = true
                             )
                         )
+
+                        // 🔁 Variante repetida: mismo nombre, otra talla y color
+                        productDao.insertProduct(
+                            Product(
+                                categoryId = 1,
+                                name = "Hoodie Legend 2Pac", // MISMO NOMBRE
+                                price = 135000.0,
+                                description = "Hoodie Legend 2Pac - Talla L Blanca",
+                                size = "L",                  // DISTINTA TALLA
+                                stock = 7,
+                                color = "Blanco",            // DISTINTO COLOR
+                                imageUrl = "https://ejemplo.com/chaqueta_blanca.jpg",
+                                isActive = true
+                            )
+                        )
+
                         productDao.insertProduct(
                             Product(
                                 categoryId = 2,
@@ -193,7 +211,7 @@ abstract class AppDatabase : RoomDatabase() {
                             )
                         )
 
-                        // Insertar itemc carrito iniciales
+                        // Insertar items de carrito iniciales
                         val cartItemDao = database.cartItemDao()
                         cartItemDao.insertCartItem(
                             CartItem(

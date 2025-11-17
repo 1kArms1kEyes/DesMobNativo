@@ -1,12 +1,16 @@
 package com.example.appmobile.activities
 
-import android.net.Uri
+import android.content.ContentValues
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,13 +30,38 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
     private lateinit var imgAvatar: ShapeableImageView
     private lateinit var ivCamera: ImageView
 
-    // Launcher to open the image picker and get the selected image URI
+    // Temporary URI where the camera will save the photo
+    private var tempPhotoUri: Uri? = null
+
+    // Launcher to open the image picker (gallery) and get the selected image URI
     private val pickImageLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             if (uri != null) {
-                // Set the selected image into the avatar ImageView
                 imgAvatar.setImageURI(uri)
-                // If later you want to save this URI to DB or preferences, you can do it here.
+                // Here you could persist the URI in SharedPreferences / DB if desired
+            }
+        }
+
+    // Launcher to take a picture with the camera and save it into tempPhotoUri
+    private val takePhotoLauncher =
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { success: Boolean ->
+            if (success && tempPhotoUri != null) {
+                // Set the captured image as avatar
+                imgAvatar.setImageURI(tempPhotoUri)
+                Toast.makeText(this, "Foto guardada en la galería", Toast.LENGTH_SHORT).show()
+                // Again, you could persist tempPhotoUri.toString() if you want to reload it later.
+            } else {
+                Toast.makeText(this, "No se tomó la foto", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    // Request CAMERA permission
+    private val requestCameraPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                openCamera()
+            } else {
+                Toast.makeText(this, "Permiso de cámara denegado", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -46,7 +75,7 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
         ivCamera = findViewById(R.id.ivCamera)
 
         ivCamera.setOnClickListener {
-            openImagePicker()
+            showImageSourceDialog()
         }
 
         // --- Existing button: Go to product list ---
@@ -56,13 +85,12 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // --- NEW / RELEVANT PART: "Compras" button opens CompraActivity ---
+        // --- "Compras" button opens CompraActivity ---
         val btnBuy = findViewById<Button>(R.id.btnBuy)
         btnBuy.setOnClickListener {
             val intent = Intent(this, CompraActivity::class.java)
             startActivity(intent)
         }
-        // --- END OF FEATURE-RELATED CODE ---
 
         // --- Orders RecyclerView setup ---
         val rvOrders = findViewById<RecyclerView>(R.id.rvOrders)
@@ -82,8 +110,53 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
         }
     }
 
+    // Shows a dialog to choose between camera or gallery
+    private fun showImageSourceDialog() {
+        val options = arrayOf("Tomar foto", "Elegir de la galería")
+        AlertDialog.Builder(this)
+            .setTitle("Seleccionar foto de perfil")
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> { // Camera
+                        requestCameraPermissionLauncher.launch(android.Manifest.permission.CAMERA)
+                    }
+                    1 -> { // Gallery
+                        openImagePicker()
+                    }
+                }
+            }
+            .show()
+    }
+
+    // Opens gallery picker
     private fun openImagePicker() {
-        // "image/*" tells Android we only want images
         pickImageLauncher.launch("image/*")
+    }
+
+    // Opens camera to take a picture and save it to MediaStore
+    private fun openCamera() {
+        val uri = createImageUri()   // Where the camera will save the photo
+        if (uri != null) {
+            tempPhotoUri = uri
+            takePhotoLauncher.launch(uri)
+        } else {
+            Toast.makeText(this, "No se pudo crear el archivo de imagen", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // Creates a Uri in MediaStore where the photo will be stored (saved in phone)
+    private fun createImageUri(): Uri? {
+        val contentValues = ContentValues().apply {
+            put(
+                MediaStore.Images.Media.DISPLAY_NAME,
+                "perfil_${System.currentTimeMillis()}.jpg"
+            )
+            put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+        }
+
+        return contentResolver.insert(
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            contentValues
+        )
     }
 }

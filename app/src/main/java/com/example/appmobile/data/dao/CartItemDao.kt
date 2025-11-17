@@ -1,6 +1,10 @@
 package com.example.appmobile.data.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 import com.example.appmobile.data.entities.CartItem
 import com.example.appmobile.data.entities.CartItemDetail
@@ -9,7 +13,7 @@ import com.example.appmobile.data.entities.CartItemDetail
 interface CartItemDao {
 
     @Insert
-    suspend fun insertCartItem(cartItem: CartItem)
+    suspend fun insertCartItem(cartItem: CartItem): Long
 
     @Update
     suspend fun updateCartItem(cartItem: CartItem)
@@ -20,7 +24,7 @@ interface CartItemDao {
     @Query("SELECT * FROM cart_items")
     fun getAllCartItems(): Flow<List<CartItem>>
 
-    @Query("SELECT * FROM cart_items WHERE cart_item_id = :id")
+    @Query("SELECT * FROM cart_items WHERE cart_item_id = :id LIMIT 1")
     suspend fun getCartItemById(id: Int): CartItem?
 
     @Query(
@@ -32,7 +36,9 @@ interface CartItemDao {
             ci.cart_item_quantity AS quantity,
             (p.price * ci.cart_item_quantity) AS lineTotal,
             p.image_url AS imageUrl,
-            p.size AS size
+            p.size AS size,
+            p.color AS color,
+            p.stock AS stock
         FROM cart_items ci
         JOIN products p ON p.product_id = ci.product_id
         """

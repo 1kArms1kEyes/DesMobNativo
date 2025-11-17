@@ -14,7 +14,7 @@ import com.example.appmobile.data.entities.CartSummary
 interface CartDao {
 
     @Insert
-    suspend fun insertCart(cart: Cart)
+    suspend fun insertCart(cart: Cart): Long
 
     @Update
     suspend fun updateCart(cart: Cart)

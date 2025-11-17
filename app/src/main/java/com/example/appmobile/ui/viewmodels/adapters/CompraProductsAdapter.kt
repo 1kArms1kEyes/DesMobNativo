@@ -46,9 +46,9 @@ class CompraProductsAdapter(
         val item = items[position]
 
         holder.tvName.text = item.name
-        holder.tvPrice.text = "$${item.price}"
+        holder.tvPrice.text = String.format("$%,.2f", item.price)
 
-        // Default XML image is used (sample_product).
+
     }
 
     override fun getItemCount(): Int = items.size

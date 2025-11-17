@@ -7,5 +7,7 @@ data class CartItemDetail(
     val quantity: Int,
     val lineTotal: Double,
     val imageUrl: String,
-    val size: String
+    val size: String,
+    val color: String,
+    val stock: Int
 )

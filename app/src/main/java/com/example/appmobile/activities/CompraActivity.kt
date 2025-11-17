@@ -2,14 +2,15 @@ package com.example.appmobile.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appmobile.R
 import com.example.appmobile.data.database.AppDatabase
+import com.example.appmobile.data.entities.Product
 import com.example.appmobile.ui.viewmodels.adapters.CompraProductsAdapter
-import android.widget.ImageButton
 import kotlinx.coroutines.launch
 
 class CompraActivity : AppCompatActivity() {
@@ -39,7 +40,16 @@ class CompraActivity : AppCompatActivity() {
         // 4. Load products from DB
         lifecycleScope.launch {
             productDao.getAllProducts().collect { products ->
-                adapter.submitList(products)
+                // 🔹 Group products by name, so we don't show duplicated cards
+                val distinctByName: List<Product> = products
+                    .filter { it.isActive } // optional: only show active products
+                    .groupBy { it.name }
+                    .map { (_, variants) ->
+                        // Take the first variant to represent that product in the list
+                        variants.first()
+                    }
+
+                adapter.submitList(distinctByName)
             }
         }
 
