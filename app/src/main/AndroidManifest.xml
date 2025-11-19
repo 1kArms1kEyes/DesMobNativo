@@ -16,6 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppMobile">
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDpV3sEOoeNbphSkFkkG6cq9GBctPczS6o" />
+
+        <activity
+            android:name=".activities.MapaActivity"
+            android:exported="false" />
         <!-- Feature activities -->
         <activity
             android:name=".activities.ActualizacionDeClientesActivity"
@@ -83,7 +90,6 @@
         <activity
             android:name=".tests.TestCartItemActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>

@@ -99,11 +99,14 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <!-- Real Google Map -->
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/mapView"
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clickable="true" />
+            tools:context=".activities.MapaActivity" />
     </androidx.cardview.widget.CardView>
 
     <!-- Labels under map -->
@@ -121,19 +124,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/tvSelectedLocation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
-        android:text="@string/ubicacion_text"
+        android:hint="Escribe una dirección"
         android:textColor="@color/gray"
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/tvEnterLocation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerStores"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tvEnterLocation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- Bottom buttons -->
     <LinearLayout

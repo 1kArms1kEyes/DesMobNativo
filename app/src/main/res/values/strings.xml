@@ -124,7 +124,6 @@
     <string name="radiobtn_domicilio_label">Domicilio</string>
     <string name="radiobtn_recoger_tienda_label">Recoger en Tienda</string>
     <string name="ubicacion_label">Ingrese su ubicación</string>
-    <string name="ubicacion_text">[Ubicación seleccionada en el mapa]</string>
     <string name="btnaceptar_label">Aceptar</string>
     <string name="btncancelar_label">Cancelar</string>
 
