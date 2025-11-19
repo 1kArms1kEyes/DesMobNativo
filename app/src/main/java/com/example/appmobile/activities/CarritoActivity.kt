@@ -1,5 +1,6 @@
 package com.example.appmobile.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.TextView
@@ -14,6 +15,7 @@ import com.example.appmobile.data.database.AppDatabase
 import com.example.appmobile.data.entities.CartItem
 import com.example.appmobile.data.entities.CartItemDetail
 import com.example.appmobile.ui.viewmodels.adapters.CartItemsAdapter
+import com.google.android.material.imageview.ShapeableImageView
 import kotlinx.coroutines.launch
 
 class CarritoActivity : AppCompatActivity(),
@@ -41,8 +43,15 @@ class CarritoActivity : AppCompatActivity(),
         cartAdapter = CartItemsAdapter(this)
 
         // Back button
-        findViewById<ImageButton>(R.id.btnBack).setOnClickListener {
-            finish()
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
+        val btnIvMap = findViewById<ShapeableImageView>(R.id.ivMap)
+        btnIvMap.setOnClickListener {
+            val intent = Intent(this, MapaActivity::class.java)
+            startActivity(intent)
         }
 
         // 2. Set up RecyclerView

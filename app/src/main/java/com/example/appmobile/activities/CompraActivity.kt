@@ -21,6 +21,11 @@ class CompraActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_compra)
 
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
         // 1. Setup RecyclerView
         val rvCompra = findViewById<RecyclerView>(R.id.rvProducts)
         rvCompra.layoutManager = LinearLayoutManager(this)

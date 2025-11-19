@@ -74,11 +74,11 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
         imgAvatar = findViewById(R.id.imgAvatar)
         ivCamera = findViewById(R.id.ivCamera)
 
-        // When the camera icon is clicked, open the image picker
         ivCamera.setOnClickListener {
             showImageSourceDialog()
         }
 
+        // --- Existing button: Go to product list ---
         val btnProductList = findViewById<Button>(R.id.btnProductList)
         btnProductList.setOnClickListener {
             val intent = Intent(this, ListaDeProductoActivity::class.java)
@@ -130,7 +130,33 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
 
     // Opens gallery picker
     private fun openImagePicker() {
-        // "image/*" tells Android we only want images
         pickImageLauncher.launch("image/*")
+    }
+
+    // Opens camera to take a picture and save it to MediaStore
+    private fun openCamera() {
+        val uri = createImageUri()   // Where the camera will save the photo
+        if (uri != null) {
+            tempPhotoUri = uri
+            takePhotoLauncher.launch(uri)
+        } else {
+            Toast.makeText(this, "No se pudo crear el archivo de imagen", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // Creates a Uri in MediaStore where the photo will be stored (saved in phone)
+    private fun createImageUri(): Uri? {
+        val contentValues = ContentValues().apply {
+            put(
+                MediaStore.Images.Media.DISPLAY_NAME,
+                "perfil_${System.currentTimeMillis()}.jpg"
+            )
+            put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+        }
+
+        return contentResolver.insert(
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            contentValues
+        )
     }
 }
