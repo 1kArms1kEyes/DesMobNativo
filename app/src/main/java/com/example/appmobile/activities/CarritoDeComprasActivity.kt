@@ -1,7 +1,9 @@
 package com.example.appmobile.activities;
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
+import com.google.android.material.imageview.ShapeableImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appmobile.R
@@ -20,7 +22,11 @@ class CarritoDeComprasActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
+        val btnIvMap = findViewById<ShapeableImageView>(R.id.ivMap)
+        btnIvMap.setOnClickListener {
+            val intent = Intent(this, MapaActivity::class.java)
+            startActivity(intent)
+        }
+
     }
-
-
 }
