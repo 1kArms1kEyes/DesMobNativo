@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.appmobile.R
 import com.example.appmobile.data.entities.Product
 import com.google.android.material.imageview.ShapeableImageView
@@ -44,11 +45,37 @@ class CompraProductsAdapter(
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val item = items[position]
+        val context = holder.itemView.context
 
         holder.tvName.text = item.name
         holder.tvPrice.text = String.format("$%,.2f", item.price)
 
-
+        // Imagen del producto: primero intentamos URL, luego drawable local, luego placeholder
+        when {
+            item.imageUrl.isNotBlank() &&
+                    (item.imageUrl.startsWith("http://") || item.imageUrl.startsWith("https://")) -> {
+                Glide.with(context)
+                    .load(item.imageUrl)
+                    .placeholder(R.drawable.sample_product_large)
+                    .error(R.drawable.sample_product_large)
+                    .into(holder.imgProduct)
+            }
+            item.imageUrl.isNotBlank() -> {
+                val resId = context.resources.getIdentifier(
+                    item.imageUrl,
+                    "drawable",
+                    context.packageName
+                )
+                if (resId != 0) {
+                    holder.imgProduct.setImageResource(resId)
+                } else {
+                    holder.imgProduct.setImageResource(R.drawable.sample_product_large)
+                }
+            }
+            else -> {
+                holder.imgProduct.setImageResource(R.drawable.sample_product_large)
+            }
+        }
     }
 
     override fun getItemCount(): Int = items.size

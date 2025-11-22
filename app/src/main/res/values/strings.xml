@@ -1,6 +1,6 @@
 <resources>
     <!-- General Strings -->
-    <string name="app_name">App Mobile</string>
+    <string name="app_name">Cypher</string>
     <string name="btnback_text">Atrás</string>
 
 
@@ -145,6 +145,9 @@
     <string name="btncomprar_perfil_usuario_label">Comprar</string>
     <string name="lista_pedidos_perfil_usuario_label">Lista de Pedidos</string>
     <string name="busqueda_perfil_usuario_label">Busqueda</string>
+    <string name="btnlogout_perfil_usuario_desc">Logout</string>
+
+
 
     <!-- activity_registro_de_clientes Strings -->
     <string name="activity_registro_de_clientes">Registro de Clientes</string>

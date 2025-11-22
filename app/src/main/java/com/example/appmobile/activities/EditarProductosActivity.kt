@@ -24,6 +24,7 @@ import com.example.appmobile.data.entities.Product
 import com.example.appmobile.data.dao.ProductDao
 import com.example.appmobile.ui.viewmodels.ProductViewModel
 import com.example.appmobile.ui.viewmodels.ProductViewModelFactory
+import com.bumptech.glide.Glide
 
 class EditarProductosActivity : AppCompatActivity() {
 
@@ -128,11 +129,24 @@ class EditarProductosActivity : AppCompatActivity() {
                 etTalla.setText(product.size)
                 actvColor.setText(product.color, false)
 
-                if (product.imageUrl.isNotEmpty()) {
+            if (product.imageUrl.isNotEmpty()) {
+                if (product.imageUrl.startsWith("http://") || product.imageUrl.startsWith("https://")) {
+                    // URL remota (por ejemplo, Google Drive)
+                    ivPreview?.let { imageView ->
+                        Glide.with(this@EditarProductosActivity)
+                            .load(product.imageUrl)
+                            .placeholder(R.drawable.sample_product_large)
+                            .error(R.drawable.sample_product_large)
+                            .into(imageView)
+                    }
+                } else {
+                    // Uri local (content:// o file://) → se mantiene el comportamiento previo
                     val uri = Uri.parse(product.imageUrl)
                     selectedImageUri = uri
                     ivPreview?.setImageURI(uri)
                 }
+            }
+
             }
         btnSave.setOnClickListener {
             val updatedProduct = buildUpdatedProduct(

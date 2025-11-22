@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.appmobile.R
 import com.example.appmobile.data.entities.CartItemDetail
 import com.google.android.material.imageview.ShapeableImageView
@@ -27,7 +28,6 @@ class CartItemsAdapter(
     }
 
     inner class CartItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // Match IDs from activity_item_carrito.xml
         val tvName: TextView = itemView.findViewById(R.id.tvTitle)
         val tvSize: TextView = itemView.findViewById(R.id.tvSize)
         val tvColor: TextView = itemView.findViewById(R.id.tvColor)
@@ -58,7 +58,7 @@ class CartItemsAdapter(
         // Talla
         holder.tvSize.text = item.size
 
-        // Color (THIS is what fixes the "Azul y blanco" always issue)
+        // Color
         holder.tvColor.text = item.color
 
         // Cantidad
@@ -70,31 +70,40 @@ class CartItemsAdapter(
         // Total de la línea
         holder.tvLineTotal.text = String.format("$%,.2f", item.lineTotal)
 
-        // Imagen del producto (por nombre de recurso si no es URL http)
-        if (item.imageUrl.isNotBlank() && !item.imageUrl.startsWith("http")) {
-            val resId = context.resources.getIdentifier(
-                item.imageUrl,
-                "drawable",
-                context.packageName
-            )
-            if (resId != 0) {
-                holder.imgProduct.setImageResource(resId)
-            } else {
+        // Imagen del producto: URL → Glide, nombre drawable → recurso local, sino placeholder
+        when {
+            item.imageUrl.isNotBlank() &&
+                    (item.imageUrl.startsWith("http://") || item.imageUrl.startsWith("https://")) -> {
+                Glide.with(context)
+                    .load(item.imageUrl)
+                    .placeholder(R.drawable.sample_product_large)
+                    .error(R.drawable.sample_product_large)
+                    .into(holder.imgProduct)
+            }
+            item.imageUrl.isNotBlank() -> {
+                val resId = context.resources.getIdentifier(
+                    item.imageUrl,
+                    "drawable",
+                    context.packageName
+                )
+                if (resId != 0) {
+                    holder.imgProduct.setImageResource(resId)
+                } else {
+                    holder.imgProduct.setImageResource(R.drawable.sample_product_large)
+                }
+            }
+            else -> {
                 holder.imgProduct.setImageResource(R.drawable.sample_product_large)
             }
-        } else {
-            holder.imgProduct.setImageResource(R.drawable.sample_product_large)
         }
 
         // Botones de interacción
         holder.btnIncrease.setOnClickListener {
             listener?.onIncreaseQuantity(item)
         }
-
         holder.btnDecrease.setOnClickListener {
             listener?.onDecreaseQuantity(item)
         }
-
         holder.btnRemove.setOnClickListener {
             listener?.onRemoveItem(item)
         }

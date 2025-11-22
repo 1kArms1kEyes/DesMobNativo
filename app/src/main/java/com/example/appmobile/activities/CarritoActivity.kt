@@ -29,6 +29,10 @@ class CarritoActivity : AppCompatActivity(),
     private lateinit var tvTotal: TextView
     private lateinit var tvShipping: TextView
 
+    // Dirección de envío
+    private lateinit var tvStreet: TextView
+    private lateinit var tvDistrict: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carrito)
@@ -39,6 +43,16 @@ class CarritoActivity : AppCompatActivity(),
         tvTotal = findViewById(R.id.tvTotal)
         tvShipping = findViewById(R.id.tvShipping)
 
+        tvStreet = findViewById(R.id.tvStreet)
+        tvDistrict = findViewById(R.id.tvDistrict)
+
+        // Si venimos del mapa con una dirección/tienda seleccionada,
+        // actualizamos la dirección y dejamos el barrio en blanco
+        intent.getStringExtra("selected_address")?.let { selectedAddress ->
+            tvStreet.text = selectedAddress
+            tvDistrict.text = ""
+        }
+
         // Adapter con callbacks para modificar el carrito
         cartAdapter = CartItemsAdapter(this)
 
@@ -48,6 +62,7 @@ class CarritoActivity : AppCompatActivity(),
             onBackPressedDispatcher.onBackPressed()
         }
 
+        // Botón que abre el mapa
         val btnIvMap = findViewById<ShapeableImageView>(R.id.ivMap)
         btnIvMap.setOnClickListener {
             val intent = Intent(this, MapaActivity::class.java)

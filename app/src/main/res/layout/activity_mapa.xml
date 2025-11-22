@@ -39,6 +39,22 @@
         app:layout_constraintBottom_toBottomOf="@id/btnBack"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Instruction under title -->
+    <TextView
+        android:id="@+id/tvInstruction"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
+        android:text="Seleccione si desea que el envío se realice a su domicilio o si prefiere seleccionar alguna de nuestras tiendas físicas"
+        android:textColor="@color/gray"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
     <!-- Delivery / Pickup toggle -->
     <RadioGroup
         android:id="@+id/rgDeliveryType"
@@ -46,9 +62,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        app:layout_constraintTop_toBottomOf="@id/tvInstruction"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -60,10 +76,10 @@
             android:background="@drawable/bg_radio_segment_left"
             android:button="@null"
             android:gravity="center"
-            android:textAlignment="center"
             android:includeFontPadding="false"
             android:padding="0dp"
             android:text="@string/radiobtn_domicilio_label"
+            android:textAlignment="center"
             android:textColor="@color/black"
             android:textStyle="bold" />
 
@@ -84,32 +100,7 @@
             android:textStyle="bold" />
     </RadioGroup>
 
-    <!-- Map card with rounded corners -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardMap"
-        android:layout_width="0dp"
-        android:layout_height="220dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="32dp"
-        app:cardCornerRadius="16dp"
-        app:cardUseCompatPadding="false"
-        app:layout_constraintTop_toBottomOf="@id/rgDeliveryType"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <!-- Real Google Map -->
-        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:map="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".activities.MapaActivity" />
-    </androidx.cardview.widget.CardView>
-
-    <!-- Labels under map -->
+    <!-- Label above fields (initially hidden) -->
     <TextView
         android:id="@+id/tvEnterLocation"
         android:layout_width="0dp"
@@ -120,24 +111,46 @@
         android:text="@string/ubicacion_label"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/cardMap"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/rgDeliveryType"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/tvSelectedLocation"
+    <!-- Address input with search icon (for Domicilio) -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilSelectedLocation"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="24dp"
+        android:visibility="gone"
         android:hint="Escribe una dirección"
-        android:textColor="@color/gray"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/tvEnterLocation"
+        app:boxBackgroundColor="@color/light_gray"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:endIconDrawable="@drawable/ic_search_24"
+        app:endIconMode="custom"
+        app:endIconTint="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tvEnterLocation">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tvSelectedLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            android:imeOptions="actionSearch"
+            android:inputType="textPostalAddress" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Store dropdown (for Recoger en tienda) -->
     <Spinner
         android:id="@+id/spinnerStores"
         android:layout_width="0dp"
@@ -146,9 +159,41 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/tvEnterLocation"
+        app:layout_constraintTop_toBottomOf="@id/tilSelectedLocation"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Barrier so the map is always below the last visible field -->
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrierLocationFields"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="tilSelectedLocation,spinnerStores" />
+
+    <!-- Map card with rounded corners (initially hidden) -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardMap"
+        android:layout_width="0dp"
+        android:layout_height="220dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="32dp"
+        android:visibility="gone"
+        app:cardCornerRadius="16dp"
+        app:cardUseCompatPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/barrierLocationFields"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Real Google Map -->
+        <fragment
+            android:id="@+id/map_fragment"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".activities.MapaActivity" />
+    </androidx.cardview.widget.CardView>
 
     <!-- Bottom buttons -->
     <LinearLayout
@@ -177,7 +222,7 @@
             android:textSize="15sp"
             app:cornerRadius="22dp"
             app:backgroundTint="@color/orange"
-            app:rippleColor="@android:color/transparent"/>
+            app:rippleColor="@android:color/transparent" />
 
         <!-- CANCELAR (SECONDARY BUTTON) -->
         <com.google.android.material.button.MaterialButton
@@ -193,7 +238,7 @@
             app:backgroundTint="@color/white"
             app:strokeColor="@color/black"
             app:strokeWidth="1dp"
-            app:rippleColor="@android:color/transparent"/>
+            app:rippleColor="@android:color/transparent" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

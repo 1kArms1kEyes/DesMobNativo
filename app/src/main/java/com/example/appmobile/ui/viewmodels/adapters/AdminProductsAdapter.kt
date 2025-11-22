@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.appmobile.R
-import com.google.android.material.imageview.ShapeableImageView
-
 import com.example.appmobile.data.entities.Product
+import com.google.android.material.imageview.ShapeableImageView
 
 class AdminProductsAdapter(
     private val onEditClick: (Product) -> Unit,
@@ -39,9 +39,37 @@ class AdminProductsAdapter(
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val item = items[position]
+        val context = holder.itemView.context
 
         holder.tvCode.text = "Producto No. ${item.productId}"
         holder.tvName.text = item.name
+
+        // Imagen: URL → Glide, nombre de drawable → recurso local, sino placeholder
+        when {
+            item.imageUrl.isNotBlank() &&
+                    (item.imageUrl.startsWith("http://") || item.imageUrl.startsWith("https://")) -> {
+                Glide.with(context)
+                    .load(item.imageUrl)
+                    .placeholder(R.drawable.sample_product_large)
+                    .error(R.drawable.sample_product_large)
+                    .into(holder.imgProduct)
+            }
+            item.imageUrl.isNotBlank() -> {
+                val resId = context.resources.getIdentifier(
+                    item.imageUrl,
+                    "drawable",
+                    context.packageName
+                )
+                if (resId != 0) {
+                    holder.imgProduct.setImageResource(resId)
+                } else {
+                    holder.imgProduct.setImageResource(R.drawable.sample_product_large)
+                }
+            }
+            else -> {
+                holder.imgProduct.setImageResource(R.drawable.sample_product_large)
+            }
+        }
 
         holder.btnEdit.setOnClickListener {
             onEditClick(item)

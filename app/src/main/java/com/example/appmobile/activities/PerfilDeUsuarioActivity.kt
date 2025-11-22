@@ -6,25 +6,36 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appmobile.R
 import com.example.appmobile.data.database.AppDatabase
+import com.example.appmobile.data.entities.CartSummary
+import com.example.appmobile.session.SessionManager
 import com.example.appmobile.ui.viewmodels.adapters.OrdersAdapter
 import com.google.android.material.imageview.ShapeableImageView
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
+import com.google.android.material.button.MaterialButton
+
 
 class PerfilDeUsuarioActivity : AppCompatActivity() {
 
     // Adapter for the RecyclerView
     private lateinit var ordersAdapter: OrdersAdapter
+
+    // Full list of orders for search
+    private var allOrders: List<CartSummary> = emptyList()
 
     // Views for the avatar and camera icon
     private lateinit var imgAvatar: ShapeableImageView
@@ -38,24 +49,19 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             if (uri != null) {
                 imgAvatar.setImageURI(uri)
-                // Here you could persist the URI in SharedPreferences / DB if desired
+                // Aquí podrías persistir el URI en SharedPreferences / DB si lo necesitas
             }
         }
 
-    // Launcher to take a picture with the camera and save it into tempPhotoUri
+    // Launcher to take a picture with the camera and save it to the temporary URI
     private val takePhotoLauncher =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { success: Boolean ->
             if (success && tempPhotoUri != null) {
-                // Set the captured image as avatar
                 imgAvatar.setImageURI(tempPhotoUri)
-                Toast.makeText(this, "Foto guardada en la galería", Toast.LENGTH_SHORT).show()
-                // Again, you could persist tempPhotoUri.toString() if you want to reload it later.
-            } else {
-                Toast.makeText(this, "No se tomó la foto", Toast.LENGTH_SHORT).show()
             }
         }
 
-    // Request CAMERA permission
+    // Launcher to request camera permission at runtime
     private val requestCameraPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
@@ -78,14 +84,50 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
             showImageSourceDialog()
         }
 
-        // --- Existing button: Go to product list ---
+        // --- Session + logout button ---
+        val sessionManager = SessionManager(this)
+
+        // Mostrar el nombre del usuario en el encabezado, si existe en la sesión
+        val tvName = findViewById<TextView>(R.id.tvName)
+        sessionManager.getUsername()?.let { username ->
+            tvName.text = username
+        }
+
+        val btnLogout = findViewById<ImageButton>(R.id.btnLogout)
+        btnLogout.setOnClickListener {
+            // Clear saved session
+            sessionManager.clearSession()
+
+            // Go back to login and clear back stack
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+
+            // --- Edit and delete buttons ---
+        val btnEdit = findViewById<MaterialButton>(R.id.btnEdit)
+        val btnDelete = findViewById<MaterialButton>(R.id.btnDelete)
+
+        btnEdit.setOnClickListener {
+            // Abrir la pantalla de actualización de clientes
+            val intent = Intent(this, ActualizacionDeClientesActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnDelete.setOnClickListener {
+            // Mostrar diálogo de confirmación para eliminar la cuenta
+            showDeleteAccountDialog()
+        }
+
+
+
+        // --- Buttons: product list and compras ---
         val btnProductList = findViewById<Button>(R.id.btnProductList)
         btnProductList.setOnClickListener {
             val intent = Intent(this, ListaDeProductoActivity::class.java)
             startActivity(intent)
         }
 
-        // --- "Compras" button opens CompraActivity ---
         val btnBuy = findViewById<Button>(R.id.btnBuy)
         btnBuy.setOnClickListener {
             val intent = Intent(this, CompraActivity::class.java)
@@ -98,31 +140,63 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
         ordersAdapter = OrdersAdapter()
         rvOrders.adapter = ordersAdapter
 
+        // --- Search field ---
+        val etSearch = findViewById<TextInputEditText>(R.id.etSearch)
+        etSearch.addTextChangedListener { text ->
+            val query = text?.toString().orEmpty()
+            applyOrderFilter(query)
+        }
+
         // --- Room database for carts/orders ---
         val db = AppDatabase.getDatabase(applicationContext)
         val cartDao = db.cartDao()
 
-        // --- Collect data from the database and update the RecyclerView ---
+        // Collect data from the database and update the RecyclerView
         lifecycleScope.launch {
             cartDao.getCartSummaries().collect { summaries ->
-                ordersAdapter.submitList(summaries)
+                allOrders = summaries
+                // Apply current filter (if any)
+                val currentQuery = etSearch.text?.toString().orEmpty()
+                applyOrderFilter(currentQuery)
             }
         }
     }
 
-    // Shows a dialog to choose between camera or gallery
+    /**
+     * Filtra la lista completa de órdenes por número, fecha, producto o monto.
+     */
+    private fun applyOrderFilter(query: String) {
+        val trimmed = query.trim()
+        if (trimmed.isEmpty()) {
+            ordersAdapter.submitList(allOrders)
+            return
+        }
+
+        val lower = trimmed.lowercase()
+
+        val filtered = allOrders.filter { order ->
+            // Número de pedido (cartId)
+            order.cartId.toString().contains(lower, ignoreCase = false) ||
+                    // Fecha
+                    order.creationDate.lowercase().contains(lower) ||
+                    // Producto
+                    order.productName.lowercase().contains(lower) ||
+                    // Monto (totalPrice)
+                    order.totalPrice.toString().contains(lower)
+        }
+
+        ordersAdapter.submitList(filtered)
+    }
+
     private fun showImageSourceDialog() {
         val options = arrayOf("Tomar foto", "Elegir de la galería")
+
         AlertDialog.Builder(this)
-            .setTitle("Seleccionar foto de perfil")
+            .setTitle("Cambiar foto de perfil")
             .setItems(options) { _, which ->
                 when (which) {
-                    0 -> { // Camera
-                        requestCameraPermissionLauncher.launch(android.Manifest.permission.CAMERA)
-                    }
-                    1 -> { // Gallery
-                        openImagePicker()
-                    }
+                    0 -> requestCameraPermissionLauncher.launch(android.Manifest.permission.CAMERA)
+                    1 -> openImagePicker()
                 }
             }
             .show()
@@ -144,7 +218,6 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
         }
     }
 
-    // Creates a Uri in MediaStore where the photo will be stored (saved in phone)
     private fun createImageUri(): Uri? {
         val contentValues = ContentValues().apply {
             put(
@@ -159,4 +232,67 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
             contentValues
         )
     }
+    // --- Delete account confirmation dialog ---
+    private fun showDeleteAccountDialog() {
+        val sessionManager = SessionManager(this)
+        val userId = sessionManager.getUserId()
+
+        if (userId == -1) {
+            Toast.makeText(this, "No se pudo obtener la información del usuario", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val db = AppDatabase.getDatabase(applicationContext)
+        val userDao = db.userDao()
+
+        val dialogView = layoutInflater.inflate(R.layout.dialog_confirm_action, null)
+
+        val tvTitle = dialogView.findViewById<TextView>(R.id.tvTitle)
+        val btnClose = dialogView.findViewById<ImageButton>(R.id.btnClose)
+        val btnNo = dialogView.findViewById<MaterialButton>(R.id.btnNo)
+        val btnSi = dialogView.findViewById<MaterialButton>(R.id.btnSi)
+
+        tvTitle.text = "¿Desea eliminar la cuenta?"
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
+        btnClose.setOnClickListener { dialog.dismiss() }
+        btnNo.setOnClickListener { dialog.dismiss() }
+
+        btnSi.setOnClickListener {
+            lifecycleScope.launch {
+                val user = userDao.getUserById(userId)
+                if (user != null) {
+                    userDao.deleteUser(user)
+                }
+
+                // Cerrar sesión
+                sessionManager.clearSession()
+
+                // Mostrar confirmación
+                Toast.makeText(
+                    this@PerfilDeUsuarioActivity,
+                    "Usuario eliminado",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                // Ir a login y limpiar el back stack
+                val intent = Intent(this@PerfilDeUsuarioActivity, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+
+                // Cerrar este Activity para que no se pueda volver atrás
+                finish()
+
+                // Cerrar el diálogo
+                dialog.dismiss()
+            }
+        }
+
+        dialog.show()
+    }
+
 }

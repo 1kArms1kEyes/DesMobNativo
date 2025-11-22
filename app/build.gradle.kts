@@ -58,7 +58,7 @@ dependencies {
     // Room dependencies
     val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")
-    kapt("androidx.room:room-compiler:$room_version")   // <-- CHANGED FROM annotationProcessor TO kapt
+    kapt("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
@@ -68,4 +68,9 @@ dependencies {
 
     // Map dependencies
     implementation("com.google.android.gms:play-services-maps:18.1.0")
+
+    // 🔹 Glide (image loading from URLs, including Google Drive direct links)
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
 }
+

@@ -24,9 +24,12 @@ import com.example.appmobile.data.entities.Product
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.first
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import com.bumptech.glide.Glide
+
 
 class DetalleProductoActivity : AppCompatActivity() {
 
@@ -109,7 +112,7 @@ class DetalleProductoActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Verificar stock disponible
+            // Verificar stock disponible para la cantidad seleccionada
             if (quantity > product.stock) {
                 showStockAlert(product.stock)
                 return@setOnClickListener
@@ -119,29 +122,54 @@ class DetalleProductoActivity : AppCompatActivity() {
                 // TODO: reemplazar con el id del usuario autenticado si ya lo manejas.
                 val currentUserId = 1
 
-                // 1) Crear carrito
-                val cart = Cart(
-                    userId = currentUserId,
-                    creationDate = getCurrentDateString(),
-                    totalPrice = product.price * quantity,
-                    paymentMethod = "Por definir",
-                    status = "Pendiente de pago"
-                )
+                // 1) Obtener todos los items del carrito existentes
+                val existingCartItems = cartItemDao.getAllCartItems().first()
 
-                // 2) Insertar carrito y obtener el id generado
-                val cartId = cartDao.insertCart(cart).toInt()
+                // 2) Ver si ya existe un ítem para este producto
+                val existingItem = existingCartItems.firstOrNull { it.productId == product.productId }
 
-                // 3) Crear item del carrito
-                val cartItem = CartItem(
-                    productId = product.productId,
-                    cartId = cartId,
-                    cartItemQuantity = quantity
-                )
+                if (existingItem != null) {
+                    // Ya existe el producto en el carrito: solo aumentar la cantidad
 
-                // 4) Insertar item
-                cartItemDao.insertCartItem(cartItem)
+                    val newQty = existingItem.cartItemQuantity + quantity
 
-                // 5) Abrir pantalla del carrito
+                    // No permitir superar el stock total disponible
+                    if (newQty > product.stock) {
+                        showStockAlert(product.stock)
+                        return@launch
+                    }
+
+                    val updatedItem = existingItem.copy(
+                        cartItemQuantity = newQty
+                    )
+                    cartItemDao.updateCartItem(updatedItem)
+                } else {
+                    // No existe todavía: crear un carrito y el CartItem como antes
+
+                    // 3) Crear carrito
+                    val cart = Cart(
+                        userId = currentUserId,
+                        creationDate = getCurrentDateString(),
+                        totalPrice = product.price * quantity,
+                        paymentMethod = "Por definir",
+                        status = "Pendiente de pago"
+                    )
+
+                    // 4) Insertar carrito y obtener el id generado
+                    val cartId = cartDao.insertCart(cart).toInt()
+
+                    // 5) Crear item del carrito
+                    val cartItem = CartItem(
+                        productId = product.productId,
+                        cartId = cartId,
+                        cartItemQuantity = quantity
+                    )
+
+                    // 6) Insertar item
+                    cartItemDao.insertCartItem(cartItem)
+                }
+
+                // 7) Abrir pantalla del carrito
                 val intent = Intent(this@DetalleProductoActivity, CarritoActivity::class.java)
                 startActivity(intent)
             }
@@ -189,16 +217,31 @@ class DetalleProductoActivity : AppCompatActivity() {
         tvPrice.text = String.format("$%,.2f", product.price)
         tvDescription.text = product.description
 
-        // Cargar drawable por nombre si imageUrl es un nombre de recurso; si no, usar default
-        if (product.imageUrl.isNotBlank() && !product.imageUrl.startsWith("http")) {
-            val resId = resources.getIdentifier(product.imageUrl, "drawable", packageName)
-            if (resId != 0) {
-                imgHeader.setImageResource(resId)
-            } else {
+        val imageUrl = product.imageUrl
+
+        when {
+            // URL remota (Google Drive, servidor, etc.)
+            imageUrl.isNotBlank() &&
+                    (imageUrl.startsWith("http://") || imageUrl.startsWith("https://")) -> {
+                Glide.with(this)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.sample_product_large)
+                    .error(R.drawable.sample_product_large)
+                    .into(imgHeader)
+            }
+            // Nombre de drawable local (por compatibilidad con tus datos antiguos)
+            imageUrl.isNotBlank() -> {
+                val resId = resources.getIdentifier(imageUrl, "drawable", packageName)
+                if (resId != 0) {
+                    imgHeader.setImageResource(resId)
+                } else {
+                    imgHeader.setImageResource(R.drawable.sample_product_large)
+                }
+            }
+            // Sin imagen
+            else -> {
                 imgHeader.setImageResource(R.drawable.sample_product_large)
             }
-        } else {
-            imgHeader.setImageResource(R.drawable.sample_product_large)
         }
     }
 

@@ -138,7 +138,7 @@ abstract class AppDatabase : RoomDatabase() {
                                 size = "M",
                                 stock = 15,
                                 color = "Negro",
-                                imageUrl = "https://ejemplo.com/chaqueta.jpg",
+                                imageUrl = "https://drive.google.com/uc?export=download&id=10dKxk93EGHvoE5-PUlM_lG_aiOXvkkQe",
                                 isActive = true
                             )
                         )
@@ -153,7 +153,7 @@ abstract class AppDatabase : RoomDatabase() {
                                 size = "L",                  // DISTINTA TALLA
                                 stock = 7,
                                 color = "Blanco",            // DISTINTO COLOR
-                                imageUrl = "https://ejemplo.com/chaqueta_blanca.jpg",
+                                imageUrl = "https://drive.google.com/uc?export=download&id=10dKxk93EGHvoE5-PUlM_lG_aiOXvkkQe",
                                 isActive = true
                             )
                         )
@@ -167,7 +167,7 @@ abstract class AppDatabase : RoomDatabase() {
                                 size = "L",
                                 stock = 9,
                                 color = "Azul",
-                                imageUrl = "https://ejemplo.com/chaqueta.jpg",
+                                imageUrl = "https://drive.google.com/uc?export=download&id=1JLwBgkiL9cHWA_eHcp-X9Th68sQBPdFS",
                                 isActive = true
                             )
                         )
@@ -180,7 +180,7 @@ abstract class AppDatabase : RoomDatabase() {
                                 size = "S",
                                 stock = 5,
                                 color = "Rojo",
-                                imageUrl = "https://ejemplo.com/chaqueta.jpg",
+                                imageUrl = "https://drive.google.com/uc?export=download&id=1bmluBnxRXTgw1j7t41R6Zs1uzLHbVb6_",
                                 isActive = true
                             )
                         )
@@ -193,7 +193,7 @@ abstract class AppDatabase : RoomDatabase() {
                                 size = "S",
                                 stock = 5,
                                 color = "Blanco",
-                                imageUrl = "https://ejemplo.com/chaqueta.jpg",
+                                imageUrl = "https://drive.google.com/uc?export=download&id=1UpA40hpD3YHh8q85co_2Hfk12rltFElY",
                                 isActive = true
                             )
                         )
@@ -206,7 +206,7 @@ abstract class AppDatabase : RoomDatabase() {
                                 size = "S",
                                 stock = 8,
                                 color = "Negro",
-                                imageUrl = "https://ejemplo.com/chaqueta.jpg",
+                                imageUrl = "https://drive.google.com/uc?export=download&id=126u3kKLMQpWkvOtaMimb5IXTmeCmPCSL",
                                 isActive = true
                             )
                         )
@@ -236,18 +236,12 @@ abstract class AppDatabase : RoomDatabase() {
                         )
                         cartItemDao.insertCartItem(
                             CartItem(
-                                productId = 3,
+                                productId = 4,
                                 cartId = 4,
                                 cartItemQuantity = 10
                             )
                         )
-                        cartItemDao.insertCartItem(
-                            CartItem(
-                                productId = 3,
-                                cartId = 5,
-                                cartItemQuantity = 10
-                            )
-                        )
+
                     }
                 }
             }
