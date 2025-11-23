@@ -2,102 +2,75 @@ package com.example.appmobile.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
+import androidx.lifecycle.lifecycleScope
 import com.example.appmobile.R
 import com.example.appmobile.data.database.AppDatabase
-import com.example.appmobile.data.repository.UserRepository
 import com.example.appmobile.session.SessionManager
-import com.example.appmobile.ui.viewmodels.UserViewModel
-import com.example.appmobile.ui.viewmodels.UserViewModelFactory
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
-
-    private lateinit var viewModel: UserViewModel
-    private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
 
-        sessionManager = SessionManager(this)
+        val etUser = findViewById<TextInputEditText>(R.id.etUser)
+        val etPass = findViewById<TextInputEditText>(R.id.etPass)
+        val btnLogin = findViewById<MaterialButton>(R.id.btnLogin)
+        val tvForgot = findViewById<TextView>(R.id.tvForgot)
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
 
-        // If session is already active, skip this screen
-        if (sessionManager.isLoggedIn()) {
-            startActivity(Intent(this, PerfilDeUsuarioActivity::class.java))
-            finish()
-            return
+        val sessionManager = SessionManager(this)
+        val db = AppDatabase.getDatabase(applicationContext)
+        val userDao = db.userDao()
+
+        // Back arrow → go back
+        btnBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
         }
 
-        val db = AppDatabase.getDatabase(applicationContext)
-        val userRepository = UserRepository(db.userDao())
-        viewModel = ViewModelProvider(
-            this,
-            UserViewModelFactory(userRepository)
-        )[UserViewModel::class.java]
-
-        val edtUser = findViewById<EditText>(R.id.etUser)
-        val edtPass = findViewById<EditText>(R.id.etPass)
-        val btnLogin = findViewById<Button>(R.id.btnLogin)
-        val tvForgot = findViewById<TextView>(R.id.tvForgot)
-
-        // Forgot password → go to OlvidarContraseniaActivity
+        // "Olvidar contraseña" link
         tvForgot.setOnClickListener {
             startActivity(Intent(this, OlvidarContraseniaActivity::class.java))
         }
 
+        // Login button
         btnLogin.setOnClickListener {
-            val username = edtUser.text.toString().trim()
-            val password = edtPass.text.toString().trim()
+            val username = etUser.text?.toString()?.trim().orEmpty()
+            val password = etPass.text?.toString()?.trim().orEmpty()
 
             if (username.isEmpty() || password.isEmpty()) {
-                showAlert(
-                    "Campos incompletos",
-                    "Por favor, complete todos los campos."
-                )
+                Toast.makeText(this, "Ingrese usuario y contraseña", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            viewModel.login(username, password).observe(this) { user ->
-                if (user != null) {
-                    Toast.makeText(
-                        this,
-                        "Bienvenido ${user.username}",
-                        Toast.LENGTH_LONG
-                    ).show()
+            lifecycleScope.launch {
+                val user = userDao.login(username, password)
 
+                if (user != null) {
                     // Save session
                     sessionManager.saveUser(user)
 
-                    startActivity(Intent(this, PerfilDeUsuarioActivity::class.java))
+                    // Go to profile
+                    val intent = Intent(this@LoginActivity, PerfilDeUsuarioActivity::class.java)
+                    startActivity(intent)
                     finish()
                 } else {
                     Toast.makeText(
-                        this,
+                        this@LoginActivity,
                         "Usuario o contraseña incorrectos",
-                        Toast.LENGTH_LONG
+                        Toast.LENGTH_SHORT
                     ).show()
                 }
             }
         }
-        val btnBack = findViewById<ImageButton>(R.id.btnBack)
-        btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
-    }
-
-    private fun showAlert(title: String, message: String) {
-        AlertDialog.Builder(this)
-            .setTitle(title)
-            .setMessage(message)
-            .setPositiveButton("Aceptar", null)
-            .show()
     }
 }

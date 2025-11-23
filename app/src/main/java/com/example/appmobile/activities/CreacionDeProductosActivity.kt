@@ -15,6 +15,10 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import android.util.Log
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 import com.example.appmobile.data.database.AppDatabase
 import com.example.appmobile.data.entities.Product
@@ -23,6 +27,7 @@ import com.example.appmobile.ui.viewmodels.ProductViewModel
 import com.example.appmobile.ui.viewmodels.ProductViewModelFactory
 
 class CreacionDeProductosActivity : AppCompatActivity() {
+
     private lateinit var viewModel: ProductViewModel
     private var selectedImageUri: Uri? = null
     private var ivPreview: ImageView? = null
@@ -39,6 +44,28 @@ class CreacionDeProductosActivity : AppCompatActivity() {
                 ivPreview?.setImageURI(uri)
             }
         }
+
+    /**
+     * Copia la imagen seleccionada al almacenamiento interno de la app
+     * y devuelve la ruta absoluta del archivo.
+     */
+    private fun saveImageToInternalStorage(uri: Uri): String? {
+        return try {
+            val inputStream = contentResolver.openInputStream(uri) ?: return null
+            val fileName = "product_${System.currentTimeMillis()}.jpg"
+            val file = File(filesDir, fileName)
+
+            inputStream.use { input ->
+                FileOutputStream(file).use { output ->
+                    input.copyTo(output)
+                }
+            }
+            file.absolutePath
+        } catch (e: IOException) {
+            Log.e("CreacionProductos", "Error guardando imagen", e)
+            null
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,6 +143,7 @@ class CreacionDeProductosActivity : AppCompatActivity() {
         etTalla: TextInputEditText,
         actvColor: MaterialAutoCompleteTextView
     ) {
+        // Limpiar errores previos
         tilNombre.error = null
         tilCategoria.error = null
         tilPrecio.error = null
@@ -195,7 +223,10 @@ class CreacionDeProductosActivity : AppCompatActivity() {
             }
         }
 
-        val imageUrl = selectedImageUri.toString()
+        // Guardar una COPIA de la imagen en el almacenamiento interno
+        val imageUrl = selectedImageUri?.let { uri ->
+            saveImageToInternalStorage(uri) ?: ""
+        } ?: ""
 
         val product = Product(
             productId = 0,

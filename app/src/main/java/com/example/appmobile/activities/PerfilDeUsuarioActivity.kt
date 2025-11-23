@@ -28,7 +28,6 @@ import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
 import com.google.android.material.button.MaterialButton
 
-
 class PerfilDeUsuarioActivity : AppCompatActivity() {
 
     // Adapter for the RecyclerView
@@ -99,12 +98,15 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
             sessionManager.clearSession()
 
             // Go back to login and clear back stack
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this@PerfilDeUsuarioActivity, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+
+            // Close this Activity so it can't be returned to
+            finish()
         }
 
-            // --- Edit and delete buttons ---
+        // --- Edit and delete buttons ---
         val btnEdit = findViewById<MaterialButton>(R.id.btnEdit)
         val btnDelete = findViewById<MaterialButton>(R.id.btnDelete)
 
@@ -118,8 +120,6 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
             // Mostrar diálogo de confirmación para eliminar la cuenta
             showDeleteAccountDialog()
         }
-
-
 
         // --- Buttons: product list and compras ---
         val btnProductList = findViewById<Button>(R.id.btnProductList)
@@ -232,6 +232,7 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
             contentValues
         )
     }
+
     // --- Delete account confirmation dialog ---
     private fun showDeleteAccountDialog() {
         val sessionManager = SessionManager(this)
@@ -294,5 +295,4 @@ class PerfilDeUsuarioActivity : AppCompatActivity() {
 
         dialog.show()
     }
-
 }

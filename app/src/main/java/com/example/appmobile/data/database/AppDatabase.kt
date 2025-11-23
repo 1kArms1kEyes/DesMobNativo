@@ -3,9 +3,7 @@ package com.example.appmobile.data.database
 import android.content.Context
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 import com.example.appmobile.data.entities.*
 import com.example.appmobile.data.dao.*
@@ -18,7 +16,7 @@ import com.example.appmobile.data.dao.*
         Cart::class,
         CartItem::class
     ],
-    version = 1
+    version = 3
 )
 abstract class AppDatabase : RoomDatabase() {
 
@@ -54,7 +52,8 @@ abstract class AppDatabase : RoomDatabase() {
                 super.onCreate(db)
 
                 INSTANCE?.let { database ->
-                    CoroutineScope(Dispatchers.IO).launch {
+                    // Seeding SINCRÓNICO para que termine antes del primer login
+                    runBlocking {
 
                         // Insertar usuario inicial
                         val userDao = database.userDao()
@@ -67,6 +66,7 @@ abstract class AppDatabase : RoomDatabase() {
                                 address = "Calle 123",
                                 city = "Bogotá",
                                 neighborhood = "Usme"
+                                // profileImageUri usa el valor por defecto null
                             )
                         )
 
@@ -143,7 +143,7 @@ abstract class AppDatabase : RoomDatabase() {
                             )
                         )
 
-                        // 🔁 Variante repetida: mismo nombre, otra talla y color
+                        // Variante repetida: mismo nombre, otra talla y color
                         productDao.insertProduct(
                             Product(
                                 categoryId = 1,
@@ -241,7 +241,6 @@ abstract class AppDatabase : RoomDatabase() {
                                 cartItemQuantity = 10
                             )
                         )
-
                     }
                 }
             }

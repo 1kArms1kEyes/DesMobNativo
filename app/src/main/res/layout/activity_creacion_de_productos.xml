@@ -317,10 +317,10 @@
                     android:layout_weight="1"
                     android:text="@string/btnseleccionar_text"
                     android:textAllCaps="false"
-                    android:textSize="16sp"
                     android:textColor="@color/white"
-                    app:cornerRadius="18dp"
-                    app:backgroundTint="@color/cornflower_blue"/>
+                    android:textSize="16sp"
+                    app:backgroundTint="@color/cornflower_blue"
+                    app:cornerRadius="18dp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

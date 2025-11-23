@@ -3,6 +3,8 @@ package com.example.appmobile.activities
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.net.Uri
+import java.io.File
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageButton
@@ -212,6 +214,7 @@ class DetalleProductoActivity : AppCompatActivity() {
     }
 
     // Mostrar info básica del producto actual
+    // Mostrar info básica del producto actual
     private fun bindProductMainInfo(product: Product) {
         tvTitle.text = product.name
         tvPrice.text = String.format("$%,.2f", product.price)
@@ -229,6 +232,33 @@ class DetalleProductoActivity : AppCompatActivity() {
                     .error(R.drawable.sample_product_large)
                     .into(imgHeader)
             }
+
+            // Uri de contenido (por compatibilidad con productos antiguos)
+            imageUrl.isNotBlank() &&
+                    imageUrl.startsWith("content://") -> {
+                Glide.with(this)
+                    .load(Uri.parse(imageUrl))
+                    .placeholder(R.drawable.sample_product_large)
+                    .error(R.drawable.sample_product_large)
+                    .into(imgHeader)
+            }
+
+            // Ruta de archivo local (productos recién creados)
+            imageUrl.isNotBlank() &&
+                    (imageUrl.startsWith("file://") || imageUrl.startsWith("/")) -> {
+                val file = if (imageUrl.startsWith("file://")) {
+                    File(Uri.parse(imageUrl).path ?: "")
+                } else {
+                    File(imageUrl)
+                }
+
+                Glide.with(this)
+                    .load(file)
+                    .placeholder(R.drawable.sample_product_large)
+                    .error(R.drawable.sample_product_large)
+                    .into(imgHeader)
+            }
+
             // Nombre de drawable local (por compatibilidad con tus datos antiguos)
             imageUrl.isNotBlank() -> {
                 val resId = resources.getIdentifier(imageUrl, "drawable", packageName)
@@ -238,12 +268,14 @@ class DetalleProductoActivity : AppCompatActivity() {
                     imgHeader.setImageResource(R.drawable.sample_product_large)
                 }
             }
+
             // Sin imagen
             else -> {
                 imgHeader.setImageResource(R.drawable.sample_product_large)
             }
         }
     }
+
 
     // Normalizar variaciones de talla a claves consistentes
     private fun normalizeSize(size: String): String {

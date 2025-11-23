@@ -43,5 +43,6 @@ interface CartItemDao {
         JOIN products p ON p.product_id = ci.product_id
         """
     )
+
     fun getCartItemsWithProduct(): Flow<List<CartItemDetail>>
 }

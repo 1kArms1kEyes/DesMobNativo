@@ -1,5 +1,6 @@
 package com.example.appmobile.ui.viewmodels.adapters
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.appmobile.R
 import com.example.appmobile.data.entities.Product
 import com.google.android.material.imageview.ShapeableImageView
+import java.io.File
 
 class CompraProductsAdapter(
     private val onItemClick: (Product) -> Unit
@@ -30,8 +32,7 @@ class CompraProductsAdapter(
             itemView.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val product = items[position]
-                    onItemClick(product)
+                    onItemClick(items[position])
                 }
             }
         }
@@ -50,8 +51,9 @@ class CompraProductsAdapter(
         holder.tvName.text = item.name
         holder.tvPrice.text = String.format("$%,.2f", item.price)
 
-        // Imagen del producto: primero intentamos URL, luego drawable local, luego placeholder
+        // Imagen del producto: URL remota, URI de contenido, archivo local o drawable
         when {
+            // URL remota
             item.imageUrl.isNotBlank() &&
                     (item.imageUrl.startsWith("http://") || item.imageUrl.startsWith("https://")) -> {
                 Glide.with(context)
@@ -60,6 +62,34 @@ class CompraProductsAdapter(
                     .error(R.drawable.sample_product_large)
                     .into(holder.imgProduct)
             }
+
+            // Uri de contenido
+            item.imageUrl.isNotBlank() &&
+                    item.imageUrl.startsWith("content://") -> {
+                Glide.with(context)
+                    .load(Uri.parse(item.imageUrl))
+                    .placeholder(R.drawable.sample_product_large)
+                    .error(R.drawable.sample_product_large)
+                    .into(holder.imgProduct)
+            }
+
+            // Ruta de archivo local
+            item.imageUrl.isNotBlank() &&
+                    (item.imageUrl.startsWith("file://") || item.imageUrl.startsWith("/")) -> {
+                val file = if (item.imageUrl.startsWith("file://")) {
+                    File(Uri.parse(item.imageUrl).path ?: "")
+                } else {
+                    File(item.imageUrl)
+                }
+
+                Glide.with(context)
+                    .load(file)
+                    .placeholder(R.drawable.sample_product_large)
+                    .error(R.drawable.sample_product_large)
+                    .into(holder.imgProduct)
+            }
+
+            // Nombre de drawable (productos semilla)
             item.imageUrl.isNotBlank() -> {
                 val resId = context.resources.getIdentifier(
                     item.imageUrl,
@@ -72,6 +102,7 @@ class CompraProductsAdapter(
                     holder.imgProduct.setImageResource(R.drawable.sample_product_large)
                 }
             }
+
             else -> {
                 holder.imgProduct.setImageResource(R.drawable.sample_product_large)
             }

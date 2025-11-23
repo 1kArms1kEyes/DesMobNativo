@@ -1,5 +1,6 @@
 package com.example.appmobile.ui.viewmodels.adapters
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.appmobile.R
 import com.example.appmobile.data.entities.Product
 import com.google.android.material.imageview.ShapeableImageView
+import java.io.File
 
 class AdminProductsAdapter(
     private val onEditClick: (Product) -> Unit,
@@ -44,8 +46,9 @@ class AdminProductsAdapter(
         holder.tvCode.text = "Producto No. ${item.productId}"
         holder.tvName.text = item.name
 
-        // Imagen: URL → Glide, nombre de drawable → recurso local, sino placeholder
+        // Imagen: URL remota, URI de contenido, archivo local o nombre de drawable
         when {
+            // URL remota
             item.imageUrl.isNotBlank() &&
                     (item.imageUrl.startsWith("http://") || item.imageUrl.startsWith("https://")) -> {
                 Glide.with(context)
@@ -54,6 +57,34 @@ class AdminProductsAdapter(
                     .error(R.drawable.sample_product_large)
                     .into(holder.imgProduct)
             }
+
+            // Uri de contenido
+            item.imageUrl.isNotBlank() &&
+                    item.imageUrl.startsWith("content://") -> {
+                Glide.with(context)
+                    .load(Uri.parse(item.imageUrl))
+                    .placeholder(R.drawable.sample_product_large)
+                    .error(R.drawable.sample_product_large)
+                    .into(holder.imgProduct)
+            }
+
+            // Ruta de archivo local
+            item.imageUrl.isNotBlank() &&
+                    (item.imageUrl.startsWith("file://") || item.imageUrl.startsWith("/")) -> {
+                val file = if (item.imageUrl.startsWith("file://")) {
+                    File(Uri.parse(item.imageUrl).path ?: "")
+                } else {
+                    File(item.imageUrl)
+                }
+
+                Glide.with(context)
+                    .load(file)
+                    .placeholder(R.drawable.sample_product_large)
+                    .error(R.drawable.sample_product_large)
+                    .into(holder.imgProduct)
+            }
+
+            // Nombre de drawable (productos de prueba)
             item.imageUrl.isNotBlank() -> {
                 val resId = context.resources.getIdentifier(
                     item.imageUrl,
@@ -66,18 +97,14 @@ class AdminProductsAdapter(
                     holder.imgProduct.setImageResource(R.drawable.sample_product_large)
                 }
             }
+
             else -> {
                 holder.imgProduct.setImageResource(R.drawable.sample_product_large)
             }
         }
 
-        holder.btnEdit.setOnClickListener {
-            onEditClick(item)
-        }
-
-        holder.btnDelete.setOnClickListener {
-            onDeleteClick(item)
-        }
+        holder.btnEdit.setOnClickListener { onEditClick(item) }
+        holder.btnDelete.setOnClickListener { onDeleteClick(item) }
     }
 
     override fun getItemCount(): Int = items.size

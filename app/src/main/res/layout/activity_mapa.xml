@@ -9,7 +9,6 @@
     android:background="@color/white"
     tools:context="com.example.appmobile.activities.MapaActivity">
 
-    <!-- Back circle button -->
     <ImageButton
         android:id="@+id/btnBack"
         android:layout_width="40dp"
@@ -23,46 +22,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Title -->
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:text="@string/activity_mapa"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@id/btnBack"
         app:layout_constraintTop_toTopOf="@id/btnBack"
         app:layout_constraintBottom_toBottomOf="@id/btnBack"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5" />
 
-    <!-- Instruction under title -->
+
     <TextView
         android:id="@+id/tvInstruction"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
         android:text="Seleccione si desea que el envío se realice a su domicilio o si prefiere seleccionar alguna de nuestras tiendas físicas"
         android:textColor="@color/gray"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
-    <!-- Delivery / Pickup toggle -->
     <RadioGroup
         android:id="@+id/rgDeliveryType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/tvInstruction"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +96,6 @@
             android:textStyle="bold" />
     </RadioGroup>
 
-    <!-- Label above fields (initially hidden) -->
     <TextView
         android:id="@+id/tvEnterLocation"
         android:layout_width="0dp"
@@ -116,7 +111,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Address input with search icon (for Domicilio) -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilSelectedLocation"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
@@ -150,7 +144,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Store dropdown (for Recoger en tienda) -->
     <Spinner
         android:id="@+id/spinnerStores"
         android:layout_width="0dp"
@@ -163,7 +156,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Barrier so the map is always below the last visible field -->
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrierLocationFields"
         android:layout_width="wrap_content"
@@ -171,14 +163,14 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="tilSelectedLocation,spinnerStores" />
 
-    <!-- Map card with rounded corners (initially hidden) -->
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardMap"
         android:layout_width="0dp"
-        android:layout_height="220dp"
+        android:layout_height="400dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:visibility="gone"
         app:cardCornerRadius="16dp"
         app:cardUseCompatPadding="false"
@@ -186,16 +178,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Real Google Map -->
         <fragment
             android:id="@+id/map_fragment"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".activities.MapaActivity" />
+            android:layout_height="match_parent" />
     </androidx.cardview.widget.CardView>
 
-    <!-- Bottom buttons -->
+
+
     <LinearLayout
         android:id="@+id/layoutButtons"
         android:layout_width="0dp"
@@ -209,7 +200,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- ACEPTAR (PRIMARY BUTTON) -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAccept"
             android:layout_width="0dp"
@@ -224,7 +214,6 @@
             app:backgroundTint="@color/orange"
             app:rippleColor="@android:color/transparent" />
 
-        <!-- CANCELAR (SECONDARY BUTTON) -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCancel"
             android:layout_width="0dp"

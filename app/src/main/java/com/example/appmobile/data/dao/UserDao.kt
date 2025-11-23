@@ -27,4 +27,8 @@ interface UserDao {
 
     @Query("SELECT * FROM users WHERE mail = :mail LIMIT 1")
     suspend fun getUserByMail(mail: String): User?
+
+    // NUEVO: para saber si la tabla está vacía
+    @Query("SELECT COUNT(*) FROM users")
+    suspend fun getUserCount(): Int
 }
