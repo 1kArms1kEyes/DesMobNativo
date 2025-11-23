@@ -22,6 +22,7 @@ class LoginActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
 
+        // Views from activity_login.xml
         val etUser = findViewById<TextInputEditText>(R.id.etUser)
         val etPass = findViewById<TextInputEditText>(R.id.etPass)
         val btnLogin = findViewById<MaterialButton>(R.id.btnLogin)
@@ -32,42 +33,78 @@ class LoginActivity : AppCompatActivity() {
         val db = AppDatabase.getDatabase(applicationContext)
         val userDao = db.userDao()
 
-        // Back arrow → go back
+        // Back arrow
         btnBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        // "Olvidar contraseña" link
+        // "Olvidé mi contraseña"
         tvForgot.setOnClickListener {
             startActivity(Intent(this, OlvidarContraseniaActivity::class.java))
         }
 
-        // Login button
+        // Ingresar button
         btnLogin.setOnClickListener {
-            val username = etUser.text?.toString()?.trim().orEmpty()
+            val userInput = etUser.text?.toString()?.trim().orEmpty()
             val password = etPass.text?.toString()?.trim().orEmpty()
 
-            if (username.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Ingrese usuario y contraseña", Toast.LENGTH_SHORT).show()
+            if (userInput.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Ingrese usuario/correo y contraseña", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             lifecycleScope.launch {
-                val user = userDao.login(username, password)
+                try {
+                    // 1) Check if there are any users at all
+                    val count = userDao.getUserCount()
+                    if (count == 0) {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "No hay usuarios registrados. Cree una cuenta primero.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        return@launch
+                    }
 
-                if (user != null) {
-                    // Save session
-                    sessionManager.saveUser(user)
+                    // 2) Try login by username
+                    var user = userDao.login(userInput, password)
 
-                    // Go to profile
-                    val intent = Intent(this@LoginActivity, PerfilDeUsuarioActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
+                    // 3) If that fails, try interpreting input as email
+                    if (user == null) {
+                        val byMail = userDao.getUserByMail(userInput)
+                        if (byMail != null && byMail.password == password) {
+                            user = byMail
+                        }
+                    }
+
+                    if (user != null) {
+                        // Successful login
+                        sessionManager.saveUser(user)
+
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Bienvenido, ${user.username}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        val intent = Intent(
+                            this@LoginActivity,
+                            PerfilDeUsuarioActivity::class.java
+                        )
+                        startActivity(intent)
+                        finish() // do not come back to login with back button
+                    } else {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Usuario/correo o contraseña incorrectos",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } catch (e: Exception) {
                     Toast.makeText(
                         this@LoginActivity,
-                        "Usuario o contraseña incorrectos",
-                        Toast.LENGTH_SHORT
+                        "Error al iniciar sesión: ${e.message}",
+                        Toast.LENGTH_LONG
                     ).show()
                 }
             }

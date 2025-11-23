@@ -32,31 +32,25 @@ abstract class AppDatabase : RoomDatabase() {
 
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
+                // Build database
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
                     "app_database"
                 )
                     .fallbackToDestructiveMigration()
-                    .addCallback(roomCallback)
                     .build()
 
+                // Assign instance first so it can be reused
                 INSTANCE = instance
-                instance
-            }
-        }
 
-        // Callback para insertar datos iniciales
-        private val roomCallback = object : RoomDatabase.Callback() {
-            override fun onCreate(db: SupportSQLiteDatabase) {
-                super.onCreate(db)
+                // SEED DATA SYNCHRONOUSLY THE FIRST TIME (when users table is empty)
+                runBlocking {
+                    val userDao = instance.userDao()
+                    val userCount = userDao.getUserCount()
 
-                INSTANCE?.let { database ->
-                    // Seeding SINCRÓNICO para que termine antes del primer login
-                    runBlocking {
-
+                    if (userCount == 0) {
                         // Insertar usuario inicial
-                        val userDao = database.userDao()
                         userDao.insertUser(
                             User(
                                 username = "paula",
@@ -71,14 +65,14 @@ abstract class AppDatabase : RoomDatabase() {
                         )
 
                         // Insertar categorías iniciales
-                        val categoryDao = database.categoryDao()
+                        val categoryDao = instance.categoryDao()
                         categoryDao.insertCategory(Category(categoryName = "Hoodies"))
                         categoryDao.insertCategory(Category(categoryName = "Camisetas"))
                         categoryDao.insertCategory(Category(categoryName = "Snapbacks"))
                         categoryDao.insertCategory(Category(categoryName = "Tenis"))
 
                         // Insertar carritos iniciales
-                        val cartDao = database.cartDao()
+                        val cartDao = instance.cartDao()
                         cartDao.insertCart(
                             Cart(
                                 userId = 1,
@@ -94,15 +88,6 @@ abstract class AppDatabase : RoomDatabase() {
                                 creationDate = "2025-08-05",
                                 totalPrice = 200000.0,
                                 paymentMethod = "Daviplata",
-                                status = "Pendiente de pago"
-                            )
-                        )
-                        cartDao.insertCart(
-                            Cart(
-                                userId = 1,
-                                creationDate = "2025-07-12",
-                                totalPrice = 199000.0,
-                                paymentMethod = "Nequi",
                                 status = "Pendiente de pago"
                             )
                         )
@@ -125,8 +110,8 @@ abstract class AppDatabase : RoomDatabase() {
                             )
                         )
 
-                        // Insertar productos iniciales
-                        val productDao = database.productDao()
+                        // 👉 You were missing this line:
+                        val productDao = instance.productDao()
 
                         // Producto base: Hoodie Legend 2Pac (M, Negro)
                         productDao.insertProduct(
@@ -143,7 +128,7 @@ abstract class AppDatabase : RoomDatabase() {
                             )
                         )
 
-                        // Variante repetida: mismo nombre, otra talla y color
+                        // 🔁 Variante repetida: mismo nombre, otra talla y color
                         productDao.insertProduct(
                             Product(
                                 categoryId = 1,
@@ -212,7 +197,7 @@ abstract class AppDatabase : RoomDatabase() {
                         )
 
                         // Insertar items de carrito iniciales
-                        val cartItemDao = database.cartItemDao()
+                        val cartItemDao = instance.cartItemDao()
                         cartItemDao.insertCartItem(
                             CartItem(
                                 productId = 1,
@@ -243,6 +228,8 @@ abstract class AppDatabase : RoomDatabase() {
                         )
                     }
                 }
+
+                instance
             }
         }
     }
