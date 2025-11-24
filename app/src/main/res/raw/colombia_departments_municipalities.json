@@ -1,0 +1,346 @@
+{
+  "departments": [
+    {
+      "code": "05",
+      "name": "Antioquia",
+      "municipalities": [
+        "Medellín",
+        "Abejorral",
+        "Abriaquí",
+        "Amagá",
+        "Andes",
+        "Santa Fe de Antioquia",
+        "Turbo"
+      ]
+    },
+    {
+      "code": "08",
+      "name": "Atlántico",
+      "municipalities": [
+        "Barranquilla",
+        "Baranoa",
+        "Galapa",
+        "Malambo",
+        "Sabanalarga",
+        "Soledad"
+      ]
+    },
+    {
+      "code": "11",
+      "name": "Bogotá, D.C.",
+      "municipalities": [
+        "Bogotá"
+      ]
+    },
+    {
+      "code": "13",
+      "name": "Bolívar",
+      "municipalities": [
+        "Cartagena de Indias",
+        "Magangué",
+        "Turbaco",
+        "El Carmen de Bolívar",
+        "Mompós"
+      ]
+    },
+    {
+      "code": "15",
+      "name": "Boyacá",
+      "municipalities": [
+        "Tunja",
+        "Duitama",
+        "Sogamoso",
+        "Chiquinquirá",
+        "Paipa",
+        "Villa de Leyva"
+      ]
+    },
+    {
+      "code": "17",
+      "name": "Caldas",
+      "municipalities": [
+        "Manizales",
+        "Aguadas",
+        "Chinchiná",
+        "La Dorada",
+        "Riosucio",
+        "Supía"
+      ]
+    },
+    {
+      "code": "18",
+      "name": "Caquetá",
+      "municipalities": [
+        "Florencia",
+        "Curillo",
+        "El Doncello",
+        "La Montañita",
+        "Morelia"
+      ]
+    },
+    {
+      "code": "19",
+      "name": "Cauca",
+      "municipalities": [
+        "Popayán",
+        "Guapi",
+        "Santander de Quilichao",
+        "Patía",
+        "Suárez"
+      ]
+    },
+    {
+      "code": "20",
+      "name": "Cesar",
+      "municipalities": [
+        "Valledupar",
+        "Aguachica",
+        "Bosconia",
+        "Curumaní",
+        "La Jagua de Ibirico"
+      ]
+    },
+    {
+      "code": "23",
+      "name": "Córdoba",
+      "municipalities": [
+        "Montería",
+        "Lorica",
+        "Planeta Rica",
+        "Sahagún",
+        "Tierralta"
+      ]
+    },
+    {
+      "code": "25",
+      "name": "Cundinamarca",
+      "municipalities": [
+        "Fusagasugá",
+        "Zipaquirá",
+        "Girardot",
+        "Soacha",
+        "Chía",
+        "Facatativá"
+      ]
+    },
+    {
+      "code": "27",
+      "name": "Chocó",
+      "municipalities": [
+        "Quibdó",
+        "Istmina",
+        "Tadó",
+        "Condoto",
+        "Bahía Solano"
+      ]
+    },
+    {
+      "code": "41",
+      "name": "Huila",
+      "municipalities": [
+        "Neiva",
+        "Pitalito",
+        "La Plata",
+        "Garzón",
+        "Campoalegre"
+      ]
+    },
+    {
+      "code": "44",
+      "name": "La Guajira",
+      "municipalities": [
+        "Riohacha",
+        "Maicao",
+        "Uribia",
+        "Fonseca",
+        "Villanueva"
+      ]
+    },
+    {
+      "code": "47",
+      "name": "Magdalena",
+      "municipalities": [
+        "Santa Marta",
+        "Ciénaga",
+        "Fundación",
+        "El Banco",
+        "Pivijay"
+      ]
+    },
+    {
+      "code": "50",
+      "name": "Meta",
+      "municipalities": [
+        "Villavicencio",
+        "Acacías",
+        "Granada",
+        "Puerto López",
+        "San Martín"
+      ]
+    },
+    {
+      "code": "52",
+      "name": "Nariño",
+      "municipalities": [
+        "Pasto",
+        "Ipiales",
+        "Tumaco",
+        "Túquerres",
+        "Sandoná"
+      ]
+    },
+    {
+      "code": "54",
+      "name": "Norte de Santander",
+      "municipalities": [
+        "Cúcuta",
+        "Ocaña",
+        "Pamplona",
+        "Los Patios",
+        "Villa del Rosario"
+      ]
+    },
+    {
+      "code": "63",
+      "name": "Quindío",
+      "municipalities": [
+        "Armenia",
+        "Calarcá",
+        "Montenegro",
+        "La Tebaida",
+        "Circasia"
+      ]
+    },
+    {
+      "code": "66",
+      "name": "Risaralda",
+      "municipalities": [
+        "Pereira",
+        "Dosquebradas",
+        "Santa Rosa de Cabal",
+        "La Virginia"
+      ]
+    },
+    {
+      "code": "68",
+      "name": "Santander",
+      "municipalities": [
+        "Bucaramanga",
+        "Barrancabermeja",
+        "Floridablanca",
+        "Girón",
+        "Socorro"
+      ]
+    },
+    {
+      "code": "70",
+      "name": "Sucre",
+      "municipalities": [
+        "Sincelejo",
+        "Corozal",
+        "San Marcos",
+        "Tolú",
+        "Sampués"
+      ]
+    },
+    {
+      "code": "73",
+      "name": "Tolima",
+      "municipalities": [
+        "Ibagué",
+        "Espinal",
+        "Melgar",
+        "Honda",
+        "Chaparral"
+      ]
+    },
+    {
+      "code": "76",
+      "name": "Valle del Cauca",
+      "municipalities": [
+        "Cali",
+        "Palmira",
+        "Buenaventura",
+        "Tuluá",
+        "Cartago"
+      ]
+    },
+    {
+      "code": "81",
+      "name": "Arauca",
+      "municipalities": [
+        "Arauca",
+        "Arauquita",
+        "Saravena",
+        "Tame"
+      ]
+    },
+    {
+      "code": "85",
+      "name": "Casanare",
+      "municipalities": [
+        "Yopal",
+        "Aguazul",
+        "Villanueva",
+        "Monterrey"
+      ]
+    },
+    {
+      "code": "86",
+      "name": "Putumayo",
+      "municipalities": [
+        "Mocoa",
+        "Orito",
+        "Puerto Asís",
+        "Sibundoy"
+      ]
+    },
+    {
+      "code": "88",
+      "name": "Archipiélago de San Andrés, Providencia y Santa Catalina",
+      "municipalities": [
+        "San Andrés",
+        "Providencia"
+      ]
+    },
+    {
+      "code": "91",
+      "name": "Amazonas",
+      "municipalities": [
+        "Leticia",
+        "Puerto Nariño"
+      ]
+    },
+    {
+      "code": "94",
+      "name": "Guainía",
+      "municipalities": [
+        "Inírida"
+      ]
+    },
+    {
+      "code": "95",
+      "name": "Guaviare",
+      "municipalities": [
+        "San José del Guaviare",
+        "El Retorno"
+      ]
+    },
+    {
+      "code": "97",
+      "name": "Vaupés",
+      "municipalities": [
+        "Mitú"
+      ]
+    },
+    {
+      "code": "99",
+      "name": "Vichada",
+      "municipalities": [
+        "Puerto Carreño",
+        "La Primavera",
+        "Santa Rosalía"
+      ]
+    }
+  ]
+}

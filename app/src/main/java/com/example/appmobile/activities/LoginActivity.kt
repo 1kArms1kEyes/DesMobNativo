@@ -2,73 +2,112 @@ package com.example.appmobile.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
+import androidx.lifecycle.lifecycleScope
 import com.example.appmobile.R
-
-import com.example.appmobile.ui.viewmodels.UserViewModel
-import com.example.appmobile.ui.viewmodels.UserViewModelFactory
-import com.example.appmobile.activities.PerfilDeUsuarioActivity
-import com.example.appmobile.data.repository.UserRepository
 import com.example.appmobile.data.database.AppDatabase
-
+import com.example.appmobile.session.SessionManager
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var viewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
 
+        // Views from activity_login.xml
+        val etUser = findViewById<TextInputEditText>(R.id.etUser)
+        val etPass = findViewById<TextInputEditText>(R.id.etPass)
+        val btnLogin = findViewById<MaterialButton>(R.id.btnLogin)
+        val tvForgot = findViewById<TextView>(R.id.tvForgot)
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
+
+        val sessionManager = SessionManager(this)
         val db = AppDatabase.getDatabase(applicationContext)
-        val userRepository = UserRepository(db.userDao())
-        viewModel = ViewModelProvider(
-            this,
-            UserViewModelFactory(userRepository)
-        )[UserViewModel::class.java]
+        val userDao = db.userDao()
 
-        val edtUser = findViewById<EditText>(R.id.etUser)
-        val edtPass = findViewById<EditText>(R.id.etPass)
-        val btnLogin = findViewById<Button>(R.id.btnLogin)
+        // Back arrow
+        btnBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
+        // "Olvidé mi contraseña"
+        tvForgot.setOnClickListener {
+            startActivity(Intent(this, OlvidarContraseniaActivity::class.java))
+        }
+
+        // Ingresar button
         btnLogin.setOnClickListener {
-            val username = edtUser.text.toString().trim()
-            val password = edtPass.text.toString().trim()
+            val userInput = etUser.text?.toString()?.trim().orEmpty()
+            val password = etPass.text?.toString()?.trim().orEmpty()
 
-            if (username.isEmpty() || password.isEmpty()) {
-                showAlert(
-                    "Campos incompletos",
-                    "Por favor, complete todos los campos."
-                )
+            if (userInput.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Ingrese usuario/correo y contraseña", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            viewModel.login(username, password).observe(this) { user ->
-                if (user != null) {
-                    Toast.makeText(this, "Bienvenido ${user.username}", Toast.LENGTH_LONG).show()
+            lifecycleScope.launch {
+                try {
+                    // 1) Check if there are any users at all
+                    val count = userDao.getUserCount()
+                    if (count == 0) {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "No hay usuarios registrados. Cree una cuenta primero.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        return@launch
+                    }
 
-                    startActivity(Intent(this, PerfilDeUsuarioActivity::class.java))
-                    finish()
-                } else {
-                    Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_LONG)
-                        .show()
+                    // 2) Try login by username
+                    var user = userDao.login(userInput, password)
+
+                    // 3) If that fails, try interpreting input as email
+                    if (user == null) {
+                        val byMail = userDao.getUserByMail(userInput)
+                        if (byMail != null && byMail.password == password) {
+                            user = byMail
+                        }
+                    }
+
+                    if (user != null) {
+                        // Successful login
+                        sessionManager.saveUser(user)
+
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Bienvenido, ${user.username}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        val intent = Intent(
+                            this@LoginActivity,
+                            PerfilDeUsuarioActivity::class.java
+                        )
+                        startActivity(intent)
+                        finish() // do not come back to login with back button
+                    } else {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Usuario/correo o contraseña incorrectos",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Error al iniciar sesión: ${e.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }
-    }
-
-    private fun showAlert(title: String, message: String) {
-        AlertDialog.Builder(this)
-            .setTitle(title)
-            .setMessage(message)
-            .setPositiveButton("Aceptar", null)
-            .show()
     }
 }

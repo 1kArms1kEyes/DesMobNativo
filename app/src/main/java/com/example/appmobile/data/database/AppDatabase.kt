@@ -3,9 +3,7 @@ package com.example.appmobile.data.database
 import android.content.Context
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 import com.example.appmobile.data.entities.*
 import com.example.appmobile.data.dao.*
@@ -18,7 +16,7 @@ import com.example.appmobile.data.dao.*
         Cart::class,
         CartItem::class
     ],
-    version = 1
+    version = 3
 )
 abstract class AppDatabase : RoomDatabase() {
 
@@ -34,30 +32,25 @@ abstract class AppDatabase : RoomDatabase() {
 
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
+                // Build database
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
                     "app_database"
                 )
                     .fallbackToDestructiveMigration()
-                    .addCallback(roomCallback)
                     .build()
 
+                // Assign instance first so it can be reused
                 INSTANCE = instance
-                instance
-            }
-        }
 
-        // Callback para insertar datos iniciales
-        private val roomCallback = object : RoomDatabase.Callback() {
-            override fun onCreate(db: SupportSQLiteDatabase) {
-                super.onCreate(db)
+                // SEED DATA SYNCHRONOUSLY THE FIRST TIME (when users table is empty)
+                runBlocking {
+                    val userDao = instance.userDao()
+                    val userCount = userDao.getUserCount()
 
-                INSTANCE?.let { database ->
-                    CoroutineScope(Dispatchers.IO).launch {
-
+                    if (userCount == 0) {
                         // Insertar usuario inicial
-                        val userDao = database.userDao()
                         userDao.insertUser(
                             User(
                                 username = "paula",
@@ -67,18 +60,19 @@ abstract class AppDatabase : RoomDatabase() {
                                 address = "Calle 123",
                                 city = "Bogotá",
                                 neighborhood = "Usme"
+                                // profileImageUri usa el valor por defecto null
                             )
                         )
 
                         // Insertar categorías iniciales
-                        val categoryDao = database.categoryDao()
+                        val categoryDao = instance.categoryDao()
                         categoryDao.insertCategory(Category(categoryName = "Hoodies"))
                         categoryDao.insertCategory(Category(categoryName = "Camisetas"))
                         categoryDao.insertCategory(Category(categoryName = "Snapbacks"))
                         categoryDao.insertCategory(Category(categoryName = "Tenis"))
 
-                        // Insertar carrito iniciales
-                        val cartDao = database.cartDao()
+                        // Insertar carritos iniciales
+                        val cartDao = instance.cartDao()
                         cartDao.insertCart(
                             Cart(
                                 userId = 1,
@@ -94,15 +88,6 @@ abstract class AppDatabase : RoomDatabase() {
                                 creationDate = "2025-08-05",
                                 totalPrice = 200000.0,
                                 paymentMethod = "Daviplata",
-                                status = "Pendiente de pago"
-                            )
-                        )
-                        cartDao.insertCart(
-                            Cart(
-                                userId = 1,
-                                creationDate = "2025-07-12",
-                                totalPrice = 199000.0,
-                                paymentMethod = "Nequi",
                                 status = "Pendiente de pago"
                             )
                         )
@@ -125,8 +110,10 @@ abstract class AppDatabase : RoomDatabase() {
                             )
                         )
 
-                        // Insertar productos iniciales
-                        val productDao = database.productDao()
+                        // 👉 You were missing this line:
+                        val productDao = instance.productDao()
+
+                        // Producto base: Hoodie Legend 2Pac (M, Negro)
                         productDao.insertProduct(
                             Product(
                                 categoryId = 1,
@@ -136,10 +123,26 @@ abstract class AppDatabase : RoomDatabase() {
                                 size = "M",
                                 stock = 15,
                                 color = "Negro",
-                                imageUrl = "https://ejemplo.com/chaqueta.jpg",
+                                imageUrl = "https://drive.google.com/uc?export=download&id=10dKxk93EGHvoE5-PUlM_lG_aiOXvkkQe",
                                 isActive = true
                             )
                         )
+
+                        // 🔁 Variante repetida: mismo nombre, otra talla y color
+                        productDao.insertProduct(
+                            Product(
+                                categoryId = 1,
+                                name = "Hoodie Legend 2Pac", // MISMO NOMBRE
+                                price = 135000.0,
+                                description = "Hoodie Legend 2Pac - Talla L Blanca",
+                                size = "L",                  // DISTINTA TALLA
+                                stock = 7,
+                                color = "Blanco",            // DISTINTO COLOR
+                                imageUrl = "https://drive.google.com/uc?export=download&id=10dKxk93EGHvoE5-PUlM_lG_aiOXvkkQe",
+                                isActive = true
+                            )
+                        )
+
                         productDao.insertProduct(
                             Product(
                                 categoryId = 2,
@@ -149,7 +152,7 @@ abstract class AppDatabase : RoomDatabase() {
                                 size = "L",
                                 stock = 9,
                                 color = "Azul",
-                                imageUrl = "https://ejemplo.com/chaqueta.jpg",
+                                imageUrl = "https://drive.google.com/uc?export=download&id=1JLwBgkiL9cHWA_eHcp-X9Th68sQBPdFS",
                                 isActive = true
                             )
                         )
@@ -162,7 +165,7 @@ abstract class AppDatabase : RoomDatabase() {
                                 size = "S",
                                 stock = 5,
                                 color = "Rojo",
-                                imageUrl = "https://ejemplo.com/chaqueta.jpg",
+                                imageUrl = "https://drive.google.com/uc?export=download&id=1bmluBnxRXTgw1j7t41R6Zs1uzLHbVb6_",
                                 isActive = true
                             )
                         )
@@ -175,7 +178,7 @@ abstract class AppDatabase : RoomDatabase() {
                                 size = "S",
                                 stock = 5,
                                 color = "Blanco",
-                                imageUrl = "https://ejemplo.com/chaqueta.jpg",
+                                imageUrl = "https://drive.google.com/uc?export=download&id=1UpA40hpD3YHh8q85co_2Hfk12rltFElY",
                                 isActive = true
                             )
                         )
@@ -188,13 +191,13 @@ abstract class AppDatabase : RoomDatabase() {
                                 size = "S",
                                 stock = 8,
                                 color = "Negro",
-                                imageUrl = "https://ejemplo.com/chaqueta.jpg",
+                                imageUrl = "https://drive.google.com/uc?export=download&id=126u3kKLMQpWkvOtaMimb5IXTmeCmPCSL",
                                 isActive = true
                             )
                         )
 
-                        // Insertar itemc carrito iniciales
-                        val cartItemDao = database.cartItemDao()
+                        // Insertar items de carrito iniciales
+                        val cartItemDao = instance.cartItemDao()
                         cartItemDao.insertCartItem(
                             CartItem(
                                 productId = 1,
@@ -218,20 +221,15 @@ abstract class AppDatabase : RoomDatabase() {
                         )
                         cartItemDao.insertCartItem(
                             CartItem(
-                                productId = 3,
+                                productId = 4,
                                 cartId = 4,
-                                cartItemQuantity = 10
-                            )
-                        )
-                        cartItemDao.insertCartItem(
-                            CartItem(
-                                productId = 3,
-                                cartId = 5,
                                 cartItemQuantity = 10
                             )
                         )
                     }
                 }
+
+                instance
             }
         }
     }

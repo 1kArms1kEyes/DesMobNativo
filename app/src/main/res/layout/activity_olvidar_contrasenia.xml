@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
@@ -49,7 +50,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/ingresar_correo_olvidar_contrasenia_text"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Code (hidden at first) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCode"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:boxBackgroundColor="@color/white"
+            app:boxStrokeColor="@color/gray"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:layout_constraintTop_toBottomOf="@id/tilEmail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Código recibido"
+                android:inputType="textCapCharacters" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Buttons -->
@@ -60,7 +87,7 @@
             android:layout_height="48dp"
             android:text="@string/btncancelar_olvidar_contrasenia_label"
             android:textAllCaps="false"
-            app:layout_constraintTop_toBottomOf="@id/tilEmail"
+            app:layout_constraintTop_toBottomOf="@id/tilCode"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="16dp" />

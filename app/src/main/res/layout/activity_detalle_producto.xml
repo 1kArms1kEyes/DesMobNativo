@@ -280,7 +280,7 @@
         android:id="@+id/btnUpdate"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:text="@string/btnActualizar"
+        android:text="@string/btnagregarCarrito_label"
         android:textAllCaps="false"
         android:textSize="16sp"
         android:textColor="@android:color/white"

@@ -3,7 +3,6 @@ package com.example.appmobile.data.dao
 import androidx.room.*
 import com.example.appmobile.data.entities.Category
 import kotlinx.coroutines.flow.Flow
-
 import com.example.appmobile.data.entities.Product
 
 @Dao
@@ -22,4 +21,8 @@ interface ProductDao {
 
     @Query("SELECT * FROM products WHERE product_id = :id")
     suspend fun getProductById(id: Int): Product?
+
+    // 🔹 NEW: get all variants that share the same name
+    @Query("SELECT * FROM products WHERE name = :name")
+    suspend fun getProductsByName(name: String): List<Product>
 }

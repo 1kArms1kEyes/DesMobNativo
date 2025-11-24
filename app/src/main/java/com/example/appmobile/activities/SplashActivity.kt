@@ -6,7 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appmobile.R
-import com.example.appmobile.activities.WelcomeActivity
+import com.example.appmobile.session.SessionManager
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,8 +14,16 @@ class SplashActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_splash)
 
+        val sessionManager = SessionManager(this)
+
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, WelcomeActivity::class.java))
+            if (sessionManager.isLoggedIn()) {
+                // User already logged in → go directly to profile
+                startActivity(Intent(this, PerfilDeUsuarioActivity::class.java))
+            } else {
+                // No session → normal flow
+                startActivity(Intent(this, WelcomeActivity::class.java))
+            }
             finish()
         }, 2000)
     }

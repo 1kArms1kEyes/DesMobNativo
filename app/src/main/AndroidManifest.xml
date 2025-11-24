@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Camera permission -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,7 +16,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppMobile">
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDpV3sEOoeNbphSkFkkG6cq9GBctPczS6o" />
+
+        <activity
+            android:name=".activities.MapaActivity"
+            android:exported="false" />
         <!-- Feature activities -->
+        <activity
+            android:name=".activities.ActualizacionDeClientesActivity"
+            android:exported="false" />
+
         <activity
             android:name=".activities.EditarProductosActivity"
             android:exported="false" />
@@ -22,11 +37,7 @@
         <activity
             android:name=".activities.ListaDeProductoActivity"
             android:exported="false" />
-        <activity
-            android:name=".activities.ActualizacionDeClientesActivity"
-            android:exported="false" />
 
-        <!-- ✅ PerfilDeUsuarioActivity is correctly declared -->
         <activity
             android:name=".activities.PerfilDeUsuarioActivity"
             android:exported="false" />
@@ -42,6 +53,15 @@
             android:exported="false" />
         <activity
             android:name=".activities.WelcomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CompraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CarritoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.DetalleProductoActivity"
             android:exported="false" />
 
         <!-- Launcher activity -->
@@ -70,7 +90,6 @@
         <activity
             android:name=".tests.TestCartItemActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>

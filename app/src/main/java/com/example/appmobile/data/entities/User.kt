@@ -14,5 +14,8 @@ data class User(
     val phone: String,
     val address: String,
     val city: String,
-    val neighborhood: String
+    val neighborhood: String,
+
+
+    val profileImageUri: String? = null
 )
